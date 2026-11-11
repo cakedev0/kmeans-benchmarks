@@ -1,0 +1,29 @@
+# Pilot of the first version: one dataset, k=256, three GPU implementations.
+# Budget grids use a tiny tol so that max_iter / epochs is the knob that is swept; the
+# default-settings points use each library's default tol.
+name = "pilot-glove-k256-gpu"
+seeds = [0, 1, 2]
+threads = 8
+timeout_s = 1800
+
+[[datasets]]
+name = "glove-200"
+k = [256]
+
+[impls.cuml]
+grid = [
+  { init = ["random", "k-means++", "scalable-k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++", "scalable-k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
+]
+
+[impls.cupy-fused]
+grid = [
+  { init = ["random", "k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
+]
+
+[impls.emeans-gpu]
+grid = [
+  { epochs = [0.5, 1, 2, 3, 5, 10, 20] },
+  { epochs = [2, 5], batch_law = "quality" },
+]

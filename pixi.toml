@@ -1,0 +1,95 @@
+[workspace]
+name = "kmeans-benchmarks"
+description = "Pareto fronts of fit time against inertia for k-means implementations"
+channels = ["conda-forge"]
+platforms = ["linux-64", { name = "linux-64-cuda-13", platform = "linux-64", cuda = "13" }]
+
+# Shared by every environment: the `kmb` package is imported from the repository root,
+# and reduced-precision math modes are off unless an implementation asks for them.
+[dependencies]
+python = "3.12.*"
+numpy = ">=2.2,<3"
+
+[activation.env]
+PYTHONPATH = "$PIXI_PROJECT_ROOT"
+NVIDIA_TF32_OVERRIDE = "0"
+CUPY_TF32 = "0"
+
+# --- cpu: the runner, the data scripts, the plots, scikit-learn, FAISS CPU, e-means CPU
+[feature.cpu]
+channels = ["conda-forge", "pytorch"]
+
+[feature.cpu.dependencies]
+scipy = "*"
+joblib = "*"
+threadpoolctl = "*"
+faiss-cpu = { version = "1.16.*", channel = "pytorch" }
+libfaiss = { version = "1.16.*", channel = "pytorch" }
+matplotlib-base = ">=3.9"
+h5py = "*"
+pyarrow = "*"
+pytest = "*"
+
+# scikit-learn nightly, for the k-means++ speed-up of scikit-learn#35140 (merged after 1.9)
+[feature.cpu.pypi-dependencies]
+scikit-learn = { version = ">=1.10.dev0", index = "https://pypi.anaconda.org/scientific-python-nightly-wheels/simple" }
+
+[feature.cpu.pypi-options]
+prerelease-mode = "allow"
+
+# --- cuml: cuML on the GPU (pip wheels, as in the measurements of PROMPT.md)
+[feature.cuml]
+platforms = ["linux-64-cuda-13"]
+
+[feature.cuml.dependencies]
+numpy = ">=2.2,<2.5"  # numba (needed by cuML) does not support numpy 2.5 yet
+
+[feature.cuml.pypi-dependencies]
+cuml-cu13 = "==26.10.*"
+cupy-cuda13x = "==14.2.0"
+
+# --- cupy: the CuPy k-means of ogrisel/cursor-sandbox#22, fetched by `pixi run fetch-kmeans-lloyd`
+[feature.cupy]
+platforms = ["linux-64-cuda-13"]
+
+[feature.cupy.dependencies]
+# imported by the kmeans_lloyd package (its array API KMeans), not by the CuPy code paths
+scikit-learn = "1.9.*"
+array-api-compat = ">=1.12"
+git = "*"
+pytest = "*"
+
+[feature.cupy.pypi-dependencies]
+cupy-cuda13x = { version = "==14.2.0", extras = ["ctk"] }
+
+# --- faiss-gpu: FAISS Kmeans on the GPU (official conda build)
+[feature.faiss-gpu]
+channels = ["conda-forge", "rapidsai", "pytorch"]
+platforms = ["linux-64-cuda-13"]
+
+[feature.faiss-gpu.dependencies]
+faiss-gpu = { version = "1.16.*", channel = "pytorch" }
+libfaiss = { version = "1.16.*", channel = "pytorch" }
+
+# --- torch: e-means on the GPU (PyTorch + Triton kernels; the CPU build of faiss suffices)
+[feature.torch]
+platforms = ["linux-64-cuda-13"]
+
+[feature.torch.dependencies]
+pytest = "*"
+
+[feature.torch.pypi-dependencies]
+torch = { version = "==2.14.1", index = "https://download.pytorch.org/whl/cu130" }
+faiss-cpu = "==1.16.0"
+
+[environments]
+default = { features = ["cpu"], solve-group = "cpu" }
+cpu = { features = ["cpu"], solve-group = "cpu" }
+cuml = { features = ["cuml"], no-default-feature = false }
+cupy = { features = ["cupy"] }
+faiss-gpu = { features = ["faiss-gpu"] }
+torch = { features = ["torch"] }
+
+[tasks]
+test = "pytest -q tests"
+fetch-kmeans-lloyd = "python -m kmb.vendor"

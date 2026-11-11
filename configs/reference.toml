@@ -1,0 +1,39 @@
+# Long reference runs, five seeds: greedy k-means++ then Lloyd until the centers stop
+# moving (or 1000 iterations), and e-means for 50 epochs (on GloVe k=256 an e-means run at
+# 20 epochs beat every 1000-iteration Lloyd run). They are only used for the "best known inertia" of
+# each (dataset, k), so that relative inertias stay stable as results are added.
+name = "reference"
+role = "reference"
+seeds = [0, 1, 2, 3, 4]
+threads = 8
+timeout_s = 7200
+
+[[datasets]]
+name = "glove-200"
+k = [256, 1024]
+
+[[datasets]]
+name = "sift-128"
+k = [256, 1024]
+
+[[datasets]]
+name = "clip-512"
+k = [256, 1024]
+
+[[datasets]]
+name = "susy"
+k = [256, 1024]
+
+[[datasets]]
+name = "year-msd"
+k = [256, 1024]
+
+[[datasets]]
+name = "blobs-3d"
+k = [256, 1024]
+
+[impls.cupy-fused]
+grid = [{ init = "k-means++", max_iter = 1000, tol = 0.0 }]
+
+[impls.emeans-gpu]
+grid = [{ epochs = 50, batch_law = "quality" }]

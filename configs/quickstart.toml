@@ -1,0 +1,24 @@
+# A few minutes on a laptop: three CPU implementations on a 100k-row subset of
+# YearPredictionMSD, k=64.  pixi run python -m kmb data year-msd
+#                            pixi run python -m kmb run configs/quickstart.toml
+#                            pixi run python -m kmb plot
+name = "quickstart"
+seeds = [0, 1, 2]
+threads = 4
+timeout_s = 600
+
+[[datasets]]
+name = "year-msd"
+n = 100000
+k = [64]
+
+[impls.sklearn-lloyd]
+grid = [
+  { init = ["random", "k-means++"], max_iter = [2, 5, 20, 100], tol = 1e-9 },
+]
+
+[impls.faiss-cpu]
+grid = [{ niter = [2, 5, 20, 100] }]
+
+[impls.emeans-cpu]
+grid = [{ epochs = [0.5, 1, 2, 5] }]

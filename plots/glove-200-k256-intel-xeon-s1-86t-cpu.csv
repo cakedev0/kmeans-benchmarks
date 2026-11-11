@@ -1,0 +1,32 @@
+series,settings,on_front,fit_s,fit_s_min,fit_s_max,rel,rel_min,rel_max,n_seeds,n_iter_median,n_empty_max,peak_mem_mb_median,gpu_sm_clock_mean
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,1.55193,1.54889,1.56703,0.00944829,0.00720361,0.0100225,3,72,0,0.0078125,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=1,True,2.87161,2.29945,2.8851,0.00466058,0.00464911,0.00786044,3,73,0,0.125,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,4.17557,4.0481,4.23543,0.00106253,0.000722105,0.00166442,3,74,0,0,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=5,True,11.1036,10.6823,11.2037,0.000914645,0.000889478,0.000991967,3,95,0,0.253906,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=10,True,21.3571,21.2586,21.3847,0.000738864,0.000616051,0.000791208,3,100,0,0.253906,nan
+faiss-cpu,max_points_per_centroid=256 niter=25 nredo=1,True,0.330158,0.319213,0.342216,0.0292716,0.0274374,0.0303973,3,25,0,0,nan
+faiss-cpu,max_points_per_centroid=None niter=3 nredo=1,True,0.404929,0.276286,0.447351,0.0270003,0.0256157,0.0282955,3,3,0,0.195312,nan
+faiss-cpu,max_points_per_centroid=None niter=10 nredo=1,True,1.71157,0.928963,2.5636,0.00955474,0.00946126,0.0113356,3,10,0,0.195312,nan
+faiss-cpu,max_points_per_centroid=None niter=25 nredo=1,True,2.06199,2.00347,2.44828,0.00712226,0.00674264,0.0079649,3,25,0,0.195312,nan
+faiss-cpu,max_points_per_centroid=None niter=100 nredo=1,True,7.17334,6.51304,9.17033,0.00592598,0.00561587,0.00678233,3,100,0,0.199219,nan
+sklearn-lloyd,init=random max_iter=3 n_init=1 tol=1e-09,True,1.04693,1.04604,1.05651,0.02653,0.0251418,0.0267992,3,3,0,1704.81,nan
+sklearn-lloyd,init=random max_iter=10 n_init=1 tol=1e-09,True,1.34381,1.32616,1.35578,0.0101652,0.00891658,0.0107603,3,10,0,1719.95,nan
+sklearn-lloyd,init=random max_iter=30 n_init=1 tol=1e-09,True,2.22346,2.17367,2.2268,0.00683025,0.00606922,0.00743778,3,30,0,1710.48,nan
+sklearn-lloyd,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,2.66425,2.59538,2.66597,0.0157619,0.0156035,0.0170785,3,3,0,1687.52,nan
+sklearn-lloyd,init=k-means++ max_iter=10 n_init=1 tol=1e-09,True,3.0767,3.00703,3.11741,0.00449573,0.0043693,0.00476015,3,10,0,1704.24,nan
+sklearn-lloyd,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,3.88573,3.84805,3.95439,0.00178824,0.00144206,0.00215226,3,30,0,1660.94,nan
+sklearn-lloyd,init=random max_iter=100 n_init=1 tol=1e-09,False,5.30895,5.00745,5.32015,0.00562121,0.00527075,0.00680011,3,100,0,1711.4,nan
+sklearn-lloyd,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,6.03776,5.60923,6.39081,0.000960226,0.000623786,0.00147514,3,100,0,1661.64,nan
+sklearn-lloyd,init=random max_iter=300 n_init=1 tol=0.0001,False,9.19222,7.85142,14.4667,0.00545012,0.00521737,0.00673379,3,212,0,1699.63,nan
+sklearn-lloyd,init=random max_iter=300 n_init=1 tol=1e-09,False,11.254,10.3752,14.0867,0.00545003,0.00521738,0.00673592,3,236,0,1695.22,nan
+sklearn-lloyd,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,13.4068,11.7944,15.6237,0.000915637,0.000544749,0.00141269,3,272,0,1690.66,nan
+sklearn-lloyd,init=k-means++ max_iter=300 n_init=1 tol=1e-09,False,14.2751,13.7811,15.878,0.000922469,0.000545356,0.0014119,3,280,0,1701.91,nan
+sklearn-lloyd,init=random max_iter=300 n_init=3 tol=0.0001,False,30.3517,26.0635,31.8469,0.00521738,0.00481027,0.00673741,3,181,0,1692.07,nan
+sklearn-lloyd,init=k-means++ max_iter=300 n_init=3 tol=0.0001,True,38.8193,37.9793,38.8642,0.00054508,0.000359637,0.000835437,3,298,0,1665.41,nan
+sklearn-minibatch,batch_size=65536 init=k-means++ max_iter=1 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,True,1.43503,1.40818,1.4489,0.103375,0.0867252,0.124038,3,18,0,129.543,nan
+sklearn-minibatch,batch_size=65536 init=k-means++ max_iter=3 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,True,3.22101,3.16717,3.2614,0.0907503,0.0687726,0.117233,3,54,0,144.848,nan
+sklearn-minibatch,batch_size=8192 init=k-means++ max_iter=1 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,True,4.4347,4.04031,4.56292,0.0582231,0.0483036,0.0679395,3,144,0,0,nan
+sklearn-minibatch,batch_size=65536 init=k-means++ max_iter=10 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,False,9.70118,9.45693,9.71372,0.0694034,0.0581933,0.087539,3,180,0,148.664,nan
+sklearn-minibatch,batch_size=8192 init=k-means++ max_iter=3 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,True,12.0651,8.93821,12.3656,0.0487449,0.0449633,0.0540927,3,426,1,0,nan
+sklearn-minibatch,batch_size=8192 init=k-means++ max_iter=10 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,False,12.1812,8.83786,13.997,0.0487449,0.0449633,0.0516823,3,426,1,15.5469,nan
+sklearn-minibatch,batch_size=1024 init=k-means++ max_iter=1 max_no_improvement=10 n_init=1 reassignment_ratio=0.01 tol=0,False,43.5588,42.9901,44.0293,0.0590061,0.0469796,0.0784062,3,1155,0,178.258,nan

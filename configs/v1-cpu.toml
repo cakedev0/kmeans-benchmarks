@@ -1,0 +1,64 @@
+# First version, CPU side: one socket of intel-xeon (benchlock slot s0 or s1).
+# The pilot showed a strong thread-count effect (FAISS and MiniBatchKMeans are faster at
+# 43 threads than at 86): run it at both with --threads 43 and --threads 86.
+name = "v1-cpu"
+seeds = [0, 1, 2]
+threads = 43
+timeout_s = 3600
+
+[[datasets]]
+name = "glove-200"
+k = [256, 1024]
+
+[[datasets]]
+name = "sift-128"
+k = [256, 1024]
+
+[[datasets]]
+name = "clip-512"
+k = [256, 1024]
+
+[[datasets]]
+name = "susy"
+k = [256, 1024]
+
+[[datasets]]
+name = "year-msd"
+k = [256, 1024]
+
+[[datasets]]
+name = "blobs-3d"
+k = [256, 1024]
+
+[impls.sklearn-lloyd]
+grid = [
+  { init = ["random", "k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
+]
+
+# Elkan only pays off in low dimension.
+[impls.sklearn-elkan]
+max_d = 3
+grid = [
+  { init = ["random", "k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = "k-means++", max_iter = 300, tol = 1e-4 },
+]
+
+[impls.sklearn-minibatch]
+grid = [
+  { batch_size = [8192, 65536], max_iter = [1, 3, 10] },
+  { batch_size = 65536, max_iter = 30, max_no_improvement = "none" },
+  { batch_size = 1024, max_iter = 1 },
+]
+
+[impls.faiss-cpu]
+grid = [
+  { niter = [3, 10, 25, 100] },
+  { niter = 25, max_points_per_centroid = 256 },
+]
+
+[impls.emeans-cpu]
+grid = [
+  { epochs = [0.5, 1, 2, 5, 10] },
+  { epochs = [2, 5], batch_law = "quality" },
+]

@@ -1,0 +1,28 @@
+# One small setting of every GPU implementation, to check that each environment works.
+name = "smoke-gpu"
+seeds = [0, 1]
+threads = 8
+timeout_s = 900
+
+[[datasets]]
+name = "glove-200"
+n = 100000
+k = [256]
+
+[impls.cuml]
+grid = [{ init = ["random", "k-means++", "scalable-k-means++"], max_iter = 20, tol = 1e-9 }]
+
+[impls.cupy]
+grid = [{ init = ["random", "k-means++"], max_iter = 20, tol = 1e-9 }]
+
+[impls.cupy-fused]
+grid = [{ init = ["random", "k-means++"], max_iter = 20, tol = 1e-9 }]
+
+[impls.faiss-gpu]
+grid = [{ niter = 20 }]
+
+[impls.emeans-gpu]
+grid = [{ epochs = 2 }]
+
+[impls.emeans-gpu-bf16]
+grid = [{ epochs = 2 }]

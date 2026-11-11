@@ -1,0 +1,33 @@
+# CPU side of the pilot: one socket of intel-xeon (benchlock slot s0 or s1, 86 cores),
+# same thread count for every library.
+name = "pilot-glove-k256-cpu"
+seeds = [0, 1, 2]
+threads = 86
+timeout_s = 3600
+
+[[datasets]]
+name = "glove-200"
+k = [256]
+
+[impls.sklearn-lloyd]
+grid = [
+  { init = ["random", "k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
+]
+
+# MiniBatchKMeans slows down with many threads (37 ms per 1024-row step at 86 threads,
+# 9x slower than at 8 threads), so batch 1024 is only run for one epoch.
+[impls.sklearn-minibatch]
+grid = [
+  { batch_size = [8192, 65536], max_iter = [1, 3, 10] },
+  { batch_size = 1024, max_iter = 1 },
+]
+
+[impls.faiss-cpu]
+grid = [
+  { niter = [3, 10, 25, 100] },
+  { niter = 25, max_points_per_centroid = 256 },
+]
+
+[impls.emeans-cpu]
+grid = [{ epochs = [0.5, 1, 2, 5, 10] }]

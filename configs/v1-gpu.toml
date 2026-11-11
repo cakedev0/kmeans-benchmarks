@@ -1,0 +1,63 @@
+# First version, GPU side: every dataset, k = 256 and 1024, all GPU implementations.
+# Run on one L4 VM under `benchlock ... all`. Estimate first with --max-rounds 1.
+name = "v1-gpu"
+seeds = [0, 1, 2]
+threads = 8
+timeout_s = 3600
+
+[[datasets]]
+name = "glove-200"
+k = [256, 1024]
+
+[[datasets]]
+name = "sift-128"
+k = [256, 1024]
+
+[[datasets]]
+name = "clip-512"
+k = [256, 1024]
+
+[[datasets]]
+name = "susy"
+k = [256, 1024]
+
+[[datasets]]
+name = "year-msd"
+k = [256, 1024]
+
+[[datasets]]
+name = "blobs-3d"
+k = [256, 1024]
+
+[impls.cuml]
+grid = [
+  { init = ["random", "k-means++", "scalable-k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++", "scalable-k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
+]
+
+[impls.cupy]
+grid = [
+  { init = ["random", "k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++"], max_iter = 300, tol = 1e-4 },
+]
+
+[impls.cupy-fused]
+grid = [
+  { init = ["random", "k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
+  { init = ["random", "k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
+]
+
+[impls.faiss-gpu]
+grid = [
+  { niter = [3, 10, 25, 100] },
+  { niter = 25, max_points_per_centroid = 256 },
+]
+
+[impls.emeans-gpu]
+grid = [
+  { epochs = [0.5, 1, 2, 3, 5, 10, 20] },
+  { epochs = [2, 5, 10], batch_law = "quality" },
+]
+
+[impls.emeans-gpu-bf16]
+grid = [{ epochs = [0.5, 1, 2, 5, 10, 20] }]
