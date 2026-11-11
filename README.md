@@ -82,7 +82,7 @@ grid = [                           # each grid is a cartesian product over the d
   { init = ["random", "k-means++", "scalable-k-means++"], max_iter = [3, 10, 30, 100, 300], tol = 1e-9 },
   { init = ["random", "k-means++", "scalable-k-means++"], n_init = [1, 3], max_iter = 300, tol = 1e-4 },
 ]
-# datasets = ["blobs-3d"]          # optional: restrict an implementation to some datasets
+# datasets = ["road-network"]          # optional: restrict an implementation to some datasets
 # max_d = 6                        # optional: or to low-dimensional ones
 ```
 
@@ -253,9 +253,9 @@ preprocessing.
 | `sift-128` | 1,000,000 × 128 | ann-benchmarks `sift-128-euclidean` | none (norms ~509) |
 | `glove-200` | 1,183,514 × 200 | ann-benchmarks `glove-200-angular` | none: unnormalized, norms 6.17 ± 1.08 |
 | `clip-512` | 1,000,000 × 512 | [Qdrant/wolt-food-clip-ViT-B-32-embeddings](https://huggingface.co/datasets/Qdrant/wolt-food-clip-ViT-B-32-embeddings), parts 00-19 | none: L2-normalized; ~23% exact duplicates kept |
-| `susy` | 5,000,000 × 18 | UCI SUSY | label dropped, each feature standardized (published features are only roughly normalized: std 0.2 to 1.0) |
+| `susy` | 5,000,000 × 18 | UCI SUSY | label dropped, features as published (already roughly normalized: std 0.2 to 1.0) |
 | `year-msd` | 515,345 × 90 | UCI YearPredictionMSD | year (the target) dropped, each feature standardized: raw std ranges from 4.4 to 1,750, so raw Euclidean distances would hinge on a few timbre-covariance features |
-| `blobs-3d` | 1,000,000 × 3 | synthetic, seed 0 | 300 anisotropic Gaussian clusters, random orientations, log-normal scales, Zipf-like sizes |
+| `road-network` | 4,348,740 × 3 | UCI 3D Road Network (North Jutland) | 434,874 GPS points projected to local km (raw units would let altitude in m dominate longitude in degrees 30x); oversampled 10x with 5 m Gaussian jitter |
 
 A `[[datasets]]` entry with `n = 100000` uses a fixed random subset of the rows
 (`glove-200-n100000` in results), handy for quick checks.

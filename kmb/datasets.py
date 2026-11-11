@@ -38,12 +38,16 @@ class Dataset:
     source: str
     notes: str
     urls: list = field(default_factory=list)
+    #: bumped when the conversion changes, so that stale cached arrays are rebuilt
+    version: int = 1
 
 
 ANN = "http://ann-benchmarks.com"
 HF_CLIP = ("https://huggingface.co/datasets/Qdrant/wolt-food-clip-ViT-B-32-embeddings/resolve/"
            "main/data/part-{:02d}-wolt-clip-ViT-B-32.parquet")
 UCI = "https://archive.ics.uci.edu/static/public"
+ROAD_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/00246/3D_spatial_network.txt"
+ROAD_N, ROAD_COPIES, ROAD_JITTER_KM = 434_874, 10, 0.005
 
 DATASETS = {
     d.name: d for d in [
@@ -59,17 +63,23 @@ DATASETS = {
                 "(~23% of the first 200k rows), kept on purpose.",
                 [HF_CLIP.format(i) for i in range(20)]),
         Dataset("susy", (5_000_000, 18), "UCI SUSY (id 279), label column dropped",
-                "18 kinematic features of particle collisions, standardized per feature "
-                "(the published features are only roughly normalized: std 0.2 to 1.0).",
-                [f"{UCI}/279/susy.zip"]),
+                "18 kinematic features of particle collisions, as published (already "
+                "roughly normalized: feature std 0.2 to 1.0).",
+                [f"{UCI}/279/susy.zip"], version=2),
         Dataset("year-msd", (515_345, 90), "UCI YearPredictionMSD (id 203), year dropped",
                 "12 timbre averages and 78 timbre covariances, standardized per feature: "
                 "raw feature std ranges from 4.4 to 1750, which would make Euclidean "
                 "distances depend on a handful of covariance features.",
                 [f"{UCI}/203/yearpredictionmsd.zip"]),
-        Dataset("blobs-3d", (1_000_000, 3), "synthetic (kmb.datasets._blobs, seed 0)",
-                "300 anisotropic Gaussian clusters in 3-d with random orientations, "
-                "log-normal scales and Zipf-like sizes: structure where the init matters."),
+        Dataset("road-network", (ROAD_N * ROAD_COPIES, 3),
+                "UCI 3D Road Network, North Jutland (id 246), OSM id dropped, 10x oversampled",
+                "434,874 GPS points along roads (longitude, latitude, altitude), projected "
+                "to local kilometers (equirectangular around the mean latitude, altitude "
+                "in km), so that distances are physical: in raw units altitude in meters "
+                "would weigh 30x more than longitude in degrees. Oversampled 10x: each "
+                "point and 9 copies with isotropic Gaussian jitter of 5 m (about half a "
+                "road's width; median nearest-neighbor spacing is 16 m), seed 0.",
+                [ROAD_URL]),
     ]
 }
 
@@ -124,8 +134,7 @@ def _susy(raw: Path) -> np.ndarray:
         import pyarrow.csv as pacsv
 
         table = pacsv.read_csv(f, read_options=pacsv.ReadOptions(autogenerate_column_names=True))
-    a = np.column_stack([table.column(i).to_numpy() for i in range(1, table.num_columns)])
-    return _standardize(a)
+    return np.column_stack([table.column(i).to_numpy() for i in range(1, table.num_columns)])
 
 
 def _year_msd(raw: Path) -> np.ndarray:
@@ -138,26 +147,24 @@ def _year_msd(raw: Path) -> np.ndarray:
     return _standardize(a)
 
 
-def _blobs(n=1_000_000, d=3, n_clusters=300, seed=0) -> np.ndarray:
-    rng = np.random.default_rng(seed)
-    centers = rng.uniform(-100, 100, size=(n_clusters, d))
-    weights = 1.0 / np.arange(1, n_clusters + 1) ** 0.8
-    sizes = rng.multinomial(n, weights / weights.sum())
-    out = np.empty((n, d), dtype=np.float32)
-    start = 0
-    for c, size in zip(centers, sizes):
-        q, _ = np.linalg.qr(rng.normal(size=(d, d)))
-        scales = rng.lognormal(mean=1.0, sigma=0.6, size=d)
-        out[start:start + size] = c + (rng.normal(size=(size, d)) * scales) @ q.T
-        start += size
-    return out[rng.permutation(n)]
+def _road_network(raw: Path) -> np.ndarray:
+    a = np.loadtxt(raw, delimiter=",", dtype=np.float64)[:, 1:]   # lon, lat, altitude (m)
+    earth_km = 6371.0088
+    lat0 = np.deg2rad(a[:, 1].mean())
+    km = np.column_stack([np.deg2rad(a[:, 0] - a[:, 0].mean()) * earth_km * np.cos(lat0),
+                          np.deg2rad(a[:, 1] - a[:, 1].mean()) * earth_km,
+                          (a[:, 2] - a[:, 2].mean()) / 1000])
+    rng = np.random.default_rng(0)
+    out = np.repeat(km[:, None, :], ROAD_COPIES, axis=1)    # each point, then its copies
+    out[:, 1:] += rng.normal(scale=ROAD_JITTER_KM, size=(len(km), ROAD_COPIES - 1, 3))
+    return out.reshape(-1, 3)
 
 
 def prepare(name: str, force=False) -> Path:
     """Download (if needed) and convert ``name`` to ``<data_dir>/<name>.npy``."""
     spec = DATASETS[name]
     out = path(name)
-    if out.exists() and not force:
+    if out.exists() and not force and _cached_version(name) == spec.version:
         return out
     raw_dir = data_dir() / "raw"
     t0 = time.perf_counter()
@@ -170,8 +177,8 @@ def prepare(name: str, force=False) -> Path:
         X = _susy(raws[0])
     elif name == "year-msd":
         X = _year_msd(raws[0])
-    elif name == "blobs-3d":
-        X = _blobs()
+    elif name == "road-network":
+        X = _road_network(raws[0])
     else:
         raise KeyError(name)
     X = np.ascontiguousarray(X, dtype=np.float32)
@@ -183,7 +190,7 @@ def prepare(name: str, force=False) -> Path:
     np.save(tmp, X)
     tmp.rename(out)
     norms = np.linalg.norm(X[:100_000], axis=1)
-    meta = {"name": name, "shape": list(X.shape), "dtype": "float32", "source": spec.source,
+    meta = {"name": name, "version": spec.version, "shape": list(X.shape), "dtype": "float32", "source": spec.source,
             "urls": spec.urls, "notes": spec.notes,
             "norm_mean_first_100k": float(norms.mean()), "norm_std_first_100k": float(norms.std()),
             "prepared_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -192,6 +199,13 @@ def prepare(name: str, force=False) -> Path:
     print(f"{name}: {X.shape} -> {out} ({meta['prepare_s']} s, "
           f"norms {meta['norm_mean_first_100k']:.3g} +- {meta['norm_std_first_100k']:.3g})")
     return out
+
+
+def _cached_version(name: str) -> int | None:
+    sidecar = path(name).with_suffix(".json")
+    if not sidecar.exists():
+        return None
+    return json.loads(sidecar.read_text()).get("version", 1)
 
 
 def load(name: str, n: int | None = None, subset_seed: int = 0) -> np.ndarray:
@@ -205,6 +219,9 @@ def load(name: str, n: int | None = None, subset_seed: int = 0) -> np.ndarray:
     p = path(name)
     if not p.exists():
         raise FileNotFoundError(f"{p} missing: run `pixi run python -m kmb data {name}`")
+    if _cached_version(name) != DATASETS[name].version:
+        raise RuntimeError(f"{p} is from an older conversion: run "
+                           f"`pixi run python -m kmb data {name}`")
     X = np.load(p, mmap_mode="r")
     if n is not None and n < X.shape[0]:
         rows = np.sort(np.random.default_rng(subset_seed).choice(X.shape[0], n, replace=False))

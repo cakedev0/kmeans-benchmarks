@@ -27,7 +27,7 @@ name = "year-msd"
 k = [256, 1024]
 
 [[datasets]]
-name = "blobs-3d"
+name = "road-network"
 k = [256, 1024]
 
 [impls.sklearn-lloyd]

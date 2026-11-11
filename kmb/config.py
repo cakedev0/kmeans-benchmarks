@@ -126,7 +126,7 @@ def load(path, machine=None) -> Config:
 
 
 DIMENSIONS = {"sift-128": 128, "glove-200": 200, "clip-512": 512, "susy": 18,
-              "year-msd": 90, "blobs-3d": 3}
+              "year-msd": 90, "road-network": 3}
 
 
 def jobs_by_comparison(cfg: Config, impl_filter=None):
