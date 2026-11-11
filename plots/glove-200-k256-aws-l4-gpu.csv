@@ -1,45 +1,69 @@
 series,settings,on_front,fit_s,fit_s_min,fit_s_max,rel,rel_min,rel_max,n_seeds,n_iter_median,n_empty_max,peak_mem_mb_median,gpu_sm_clock_mean
-cuml,init=random max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,True,0.127524,0.124681,0.128608,0.0257468,0.0242901,0.0288363,3,3,0,42,1705.63
-cuml,init=random max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,True,0.283124,0.28005,0.284583,0.0102572,0.00961001,0.0121859,3,10,0,42,1458.17
-cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,True,0.571856,0.552227,0.575281,0.00699838,0.00654219,0.00896342,3,23,0,42,1381.87
-cuml,init=random max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,True,0.725296,0.723076,0.727603,0.00636713,0.00596651,0.00842072,3,30,0,42,1378.3
-cuml,init=scalable-k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,1.36123,1.35829,1.38659,0.0515221,0.0384635,0.052925,3,3,0,78,1387.77
-cuml,init=scalable-k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,False,1.50544,1.50119,1.53075,0.0309819,0.0226615,0.0359959,3,10,0,78,1394.5
-cuml,init=random max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,1.68762,1.60445,1.75618,0.00644842,0.00641018,0.0070779,3,22,0,42,1324.37
-cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,False,1.84165,1.7747,1.99537,0.0262287,0.0191195,0.0307738,3,24,0,78,1368.5
-cuml,init=scalable-k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,1.94659,1.93722,1.97538,0.0262814,0.01876,0.0305043,3,30,0,78,1377.43
-cuml,init=random max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,2.31603,2.31352,2.32043,0.00568603,0.00503275,0.00738992,3,100,0,42,1302.07
-cuml,init=scalable-k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,False,3.59706,3.58636,3.63825,0.0255557,0.018157,0.0292252,3,100,0,78,1299.73
-cuml,init=k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,4.10449,4.09404,4.10569,0.015336,0.0146925,0.0157633,3,3,0,92,1259.03
-cuml,init=k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,True,4.27567,4.26154,4.28389,0.0042591,0.00397301,0.004376,3,10,0,92,1248.47
-cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,True,4.44227,4.41153,4.53435,0.00180049,0.00157599,0.00225615,3,21,0,92,1279.87
-cuml,init=k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,4.74733,4.7422,4.76008,0.00183846,0.00160269,0.00212616,3,30,0,92,1244.37
-cuml,init=scalable-k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,5.56203,5.2902,5.94162,0.02469,0.0191199,0.0262296,3,24,0,78,1364.73
-cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,5.98392,5.69172,6.95581,0.00556041,0.00495527,0.00717109,3,260,0,42,1267.2
-cuml,init=k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,6.3888,6.38039,6.41087,0.00146287,0.00116434,0.0016046,3,100,0,92,1243.97
-cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,6.8583,5.35637,8.13495,0.0253277,0.0180265,0.0291959,3,245,0,78,1290.1
-cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,True,8.86821,8.84416,11.0414,0.000985059,0.000322028,0.00114296,3,205,0,92,1238
-cuml,init=k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,13.4067,13.388,13.4863,0.00216227,0.00211796,0.00220466,3,21,0,92,1264.43
-cupy-fused,init=random max_iter=3 n_init=1 tol=1e-09,True,0.135059,0.134218,0.144753,0.0302628,0.0266985,0.0328701,3,3,0,910,1513.1
-cupy-fused,init=random max_iter=10 n_init=1 tol=1e-09,True,0.271535,0.26839,0.279457,0.0142811,0.0118429,0.0148499,3,10,0,910,1473.67
-cupy-fused,init=random max_iter=30 n_init=1 tol=1e-09,True,0.65137,0.644793,0.662415,0.0100919,0.00870736,0.0106435,3,30,0,910,1116.07
-cupy-fused,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,1.18929,1.18251,1.1907,0.015102,0.0150785,0.0188065,3,3,0,910,1149.37
-cupy-fused,init=k-means++ max_iter=10 n_init=1 tol=1e-09,True,1.32607,1.32454,1.33224,0.00414642,0.00372959,0.00490967,3,10,0,910,1085.27
-cupy-fused,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,1.72459,1.72032,1.72901,0.00132576,0.00104568,0.00180179,3,30,0,910,1064.47
-cupy-fused,init=random max_iter=100 n_init=1 tol=1e-09,False,2.05243,2.05226,2.06979,0.0092204,0.00743974,0.00972417,3,100,0,910,965.467
-cupy-fused,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,3.22529,3.21812,3.23283,0.000757223,0.000285608,0.00115923,3,100,0,910,932.4
-cupy-fused,init=random max_iter=300 n_init=1 tol=1e-09,False,6.05279,5.42167,6.12418,0.0091771,0.00731599,0.00962386,3,300,0,910,907.567
-cupy-fused,init=random max_iter=300 n_init=1 tol=0.0001,False,6.37437,5.47716,6.41079,0.0091554,0.00731597,0.00963254,3,300,0,910,867.367
-cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,7.16153,7.1266,7.17965,0.000683925,0.000222759,0.000986326,3,300,0,910,937.767
-cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=1e-09,False,7.39532,6.49932,7.41409,0.000685318,0.000222668,0.000975479,3,300,0,910,890.233
-cupy-fused,init=random max_iter=300 n_init=3 tol=0.0001,False,17.2097,15.8148,17.3586,0.00630439,0.00525473,0.00721,3,296,0,1814,895.8
-cupy-fused,init=k-means++ max_iter=300 n_init=3 tol=0.0001,True,20.764,19.3548,20.9696,0.000437279,0.000222982,0.000924369,3,300,0,1814,893.3
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.025199,0.022874,0.0253,0.00929993,0.00818871,0.00949587,3,72,0,82,1881.67
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=1,True,0.03583,0.034241,0.03599,0.00657204,0.00628097,0.00666617,3,73,0,76,1841.67
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.0689,0.066138,0.070186,0.00140794,0.0010839,0.00146492,3,74,0,142,1680
-emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=2,True,0.098718,0.097145,0.102447,0.000672888,0.000635825,0.00117086,3,578,0,102,1897.73
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=3,False,0.10198,0.098983,0.102347,0.000744855,0.000612924,0.000904725,3,111,0,142,1803.57
-emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=5,True,0.175591,0.175031,0.17667,0.00026435,0.000109135,0.000477229,3,725,0,102,1729.5
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=5,False,0.195386,0.195165,0.196054,0.000378076,0.000213639,0.000878723,3,95,0,216,1548.2
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=10,False,0.390872,0.390527,0.396528,0.000571492,0.000463269,0.000950568,3,100,0,370,1426.4
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=20,True,0.783821,0.779797,0.790031,0.000229729,0,0.000579707,3,200,0,370,1343.23
+cuml,init=random max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,True,0.125275,0.12339,0.126276,0.026037,0.02458,0.0291275,3,3,0,42,1684.93
+cuml,init=random max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,True,0.279349,0.278011,0.283318,0.010544,0.00989573,0.0124724,3,10,0,42,1557.1
+cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,True,0.555738,0.550985,0.599356,0.0073638,0.00682029,0.00916352,3,22,0,42,1400.17
+cuml,init=random max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,True,0.721614,0.718663,0.726999,0.00665627,0.00625114,0.00870263,3,30,0,42,1390.27
+cuml,init=scalable-k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,1.34943,1.34427,1.37004,0.0518196,0.0387571,0.053223,3,3,0,78,1405.4
+cuml,init=scalable-k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,False,1.53106,1.51823,1.54803,0.0312739,0.0229508,0.0362809,3,10,0,78,1377.4
+cuml,init=random max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,1.69049,1.60376,1.74272,0.00682758,0.00673296,0.00736289,3,22,0,42,1312.83
+cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,False,1.87469,1.79909,2.01437,0.0265212,0.019409,0.0310662,3,24,0,82,1343.1
+cuml,init=scalable-k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,1.91194,1.90823,1.93862,0.0265732,0.0190358,0.0307974,3,30,0,78,1403.73
+cuml,init=random max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,2.3215,2.31278,2.3254,0.00597114,0.00534775,0.00766947,3,100,0,42,1302.37
+cuml,init=scalable-k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,False,3.57497,3.57024,3.60148,0.0258489,0.0184749,0.0295128,3,100,0,78,1306.5
+cuml,init=k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,4.11971,4.1179,4.13406,0.0180554,0.0155691,0.0182934,3,3,0,92,1246.43
+cuml,init=k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,True,4.30871,4.29732,4.31927,0.0047363,0.00457782,0.00475319,3,10,0,92,1245.93
+cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,True,4.47082,4.45568,4.51258,0.00294189,0.00235909,0.00305324,3,21,0,92,1275.83
+cuml,init=k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,True,4.77574,4.76225,4.78765,0.00202087,0.0016124,0.00225444,3,30,0,92,1241.93
+cuml,init=scalable-k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,5.62747,5.33877,5.83352,0.0249784,0.0194129,0.0265187,3,24,0,78,1354.57
+cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,5.76401,5.51568,6.92064,0.00584229,0.00520873,0.00745619,3,250,0,42,1273.4
+cuml,init=k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,6.36588,6.36248,6.37908,0.00147127,0.00134862,0.0016966,3,100,0,92,1250.93
+cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,7.13596,5.38653,7.75089,0.0256176,0.0183149,0.0294871,3,257,0,78,1289.8
+cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,True,8.9319,7.73979,9.8922,0.00138929,0.00130482,0.00145117,3,207,0,92,1236.5
+cuml,init=k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,13.5568,13.4574,13.734,0.00222221,0.00218224,0.00261004,3,21,0,92,1243.3
+cupy,init=random max_iter=3 n_init=1 tol=1e-09,True,0.192927,0.192474,0.198694,0.0305544,0.0269891,0.0331624,3,3,0,2084,1561.8
+cupy,init=random max_iter=10 n_init=1 tol=1e-09,True,0.416832,0.414007,0.423113,0.0145722,0.0121282,0.0151368,3,10,0,2084,1198.87
+cupy,init=random max_iter=30 n_init=1 tol=1e-09,True,1.08114,1.07416,1.08752,0.0103774,0.00899263,0.0109319,3,30,0,2084,901.733
+cupy,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,1.63603,1.63334,1.63681,0.0166735,0.0149442,0.0174228,3,3,0,2722,1082.53
+cupy,init=k-means++ max_iter=10 n_init=1 tol=1e-09,True,1.88464,1.88391,1.88959,0.00504843,0.0042732,0.00533031,3,10,0,2722,1024.03
+cupy,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,2.62466,2.59737,2.63538,0.00192653,0.00157086,0.00245999,3,30,0,2722,929.133
+cupy,init=random max_iter=100 n_init=1 tol=1e-09,False,3.44811,3.44571,3.52641,0.00950757,0.0077305,0.010012,3,100,0,2084,801.2
+cupy,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,5.07874,5.03904,5.18388,0.00126242,0.000930636,0.00177046,3,100,0,2722,845.467
+cupy,init=random max_iter=300 n_init=1 tol=1e-09,False,10.5248,10.0048,10.6271,0.00946284,0.00759988,0.00991884,3,299,0,2084,754.733
+cupy,init=random max_iter=300 n_init=1 tol=0.0001,False,10.7035,8.7804,10.7437,0.00946295,0.00760041,0.00989951,3,300,0,2084,733.7
+cupy,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,11.8333,9.21651,12.0151,0.00116269,0.000859762,0.00154873,3,299,0,2722,801.033
+cupy,init=k-means++ max_iter=300 n_init=1 tol=1e-09,False,12.006,10.168,12.0815,0.00116316,0.000859842,0.00154901,3,300,0,2722,789.433
+cupy-fused,init=random max_iter=3 n_init=1 tol=1e-09,True,0.135725,0.132887,0.144093,0.0305544,0.0269891,0.0331624,3,3,0,910,1586.23
+cupy-fused,init=random max_iter=10 n_init=1 tol=1e-09,True,0.26617,0.26572,0.277027,0.0145697,0.0121283,0.0151383,3,10,0,910,1415.33
+cupy-fused,init=random max_iter=30 n_init=1 tol=1e-09,True,0.637367,0.636434,0.647556,0.0103755,0.00899223,0.0109299,3,30,0,910,1150.73
+cupy-fused,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,1.18842,1.18757,1.18891,0.0153893,0.0153658,0.0190948,3,3,0,910,1121.77
+cupy-fused,init=k-means++ max_iter=10 n_init=1 tol=1e-09,True,1.33467,1.33345,1.34473,0.00443138,0.00401313,0.00519677,3,10,0,910,1079.33
+cupy-fused,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,1.74415,1.73419,1.74861,0.00160529,0.00133325,0.00208666,3,30,0,910,1025.9
+cupy-fused,init=random max_iter=100 n_init=1 tol=1e-09,False,2.08156,2.07592,2.08455,0.00952592,0.00772703,0.0100124,3,100,0,910,950.233
+cupy-fused,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,3.23431,3.22269,3.23626,0.00104116,0.000567634,0.0014433,3,100,0,910,933.667
+cupy-fused,init=random max_iter=300 n_init=1 tol=0.0001,False,5.27436,5.17498,5.99412,0.0094629,0.00760139,0.0099173,3,247,0,910,870.3
+cupy-fused,init=random max_iter=300 n_init=1 tol=1e-09,False,6.3468,6.34256,6.38324,0.00946317,0.00760015,0.00991617,3,300,0,910,870.9
+cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,6.94888,6.9361,6.96293,0.000966951,0.000505798,0.0013998,3,300,0,910,975.2
+cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=1e-09,False,7.31453,7.29417,7.34343,0.00096721,0.000505719,0.00124458,3,300,0,910,905.333
+cupy-fused,init=random max_iter=300 n_init=3 tol=0.0001,False,16.9465,15.4926,17.672,0.00658566,0.00553883,0.00751917,3,271,0,1814,912.367
+cupy-fused,init=k-means++ max_iter=300 n_init=3 tol=0.0001,True,21.0838,18.8609,21.605,0.000720338,0.000505929,0.00120779,3,300,0,1814,942.7
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.025631,0.022849,0.025662,0.00949828,0.00855277,0.0099345,3,72,0,82,1920
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=1,True,0.03529,0.034531,0.035385,0.00650361,0.0062652,0.00680408,3,73,0,76,1868.33
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.069041,0.066932,0.069365,0.00160894,0.0015718,0.0016755,3,74,0,142,1795
+emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=2,True,0.100397,0.098495,0.103028,0.00137563,0.00100165,0.00138116,3,578,0,102,1879.03
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=3,True,0.100782,0.097652,0.10159,0.00108924,0.000983939,0.00114987,3,111,0,142,1715.7
+emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=5,True,0.177167,0.175169,0.177306,0.000642121,0.00035581,0.000763429,3,725,0,102,1731
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=5,False,0.194071,0.194039,0.195688,0.000935405,0.000557561,0.00112814,3,95,0,216,1546.8
+emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=10,True,0.31823,0.317883,0.318294,0.000425776,0.00025896,0.000668219,3,730,0,116,1530.27
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=10,False,0.3925,0.391787,0.399123,0.000830011,0.000744871,0.00127248,3,100,0,370,1380.93
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=20,False,0.790212,0.788735,0.796445,0.000505625,0.000332777,0.000805257,3,200,0,370,1310.47
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.021497,0.020276,0.022149,0.00776665,0.00755549,0.00930027,3,72,0,82,1950
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=1,True,0.036126,0.032833,0.036277,0.00626342,0.00607283,0.00690928,3,73,0,96,1913.33
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.057514,0.053377,0.058294,0.0015591,0.00131929,0.0016675,3,74,0,156,1831.27
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=5,True,0.171623,0.167028,0.172817,0.0012371,0.000633218,0.00127957,3,95,0,268,1753
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=10,True,0.369419,0.366082,0.371276,0.000810263,0.000567444,0.00134413,3,100,0,470,1642.5
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=20,True,0.730935,0.730591,0.732585,0.00050053,0.00035659,0.000544663,3,200,0,470,1549.33
+faiss-gpu,max_points_per_centroid=256 niter=25 nredo=1,True,0.621882,0.617794,0.652069,0.0295869,0.0277282,0.0306998,3,25,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=3 nredo=1,True,1.02579,1.00339,1.03356,0.0272912,0.0259056,0.0285866,3,3,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=10 nredo=1,True,2.32774,2.28711,2.33624,0.00983946,0.00974842,0.0116221,3,10,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=25 nredo=1,True,5.20285,5.09467,5.25026,0.00740779,0.00702355,0.00827668,3,25,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=100 nredo=1,True,18.3139,17.5981,19.2007,0.00620051,0.00590932,0.00707338,3,100,0,1546,2040
