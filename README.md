@@ -14,6 +14,7 @@ The context and the requirements are in [PROMPT.md](PROMPT.md). The pilot result
 ```bash
 pixi install -e cpu                                   # scikit-learn nightly, FAISS 1.16 CPU
 pixi run build-ext                                    # the e-means CPU kernel (Cython, OpenMP)
+pixi install -e sklearn-emeans                        # scikit-learn with EMeans, built from source
 pixi run python -m kmb data year-msd                  # downloads 211 MB, writes data/year-msd.npy
 pixi run python -m kmb run configs/quickstart.toml    # 16 jobs, 48 fits, ~1 min on a laptop
 pixi run python -m kmb plot                           # plots/<dataset>-k<k>-<machine>-<device>.png
@@ -211,6 +212,7 @@ plots and per-point CSVs in `plots/`.
 | `faiss-cpu`, `faiss-gpu` | cpu, faiss-gpu | `faiss.Kmeans` 1.16 (Lloyd, random init, fixed `niter`, `nredo` inits) |
 | `emeans-cpu`, `emeans-gpu` | cpu, torch | e-means from `faiss.contrib.e_means` 1.16: `NumpyEmeans`, `QuantizedEmeans(quantizer=None)` (native FP32, Triton kernels) |
 | `emeans-cpu-cython` | cpu | `NumpyEmeans` with its accumulation step (assignment, counting sort, per-cluster sums) in an OpenMP Cython kernel, `kmb/_emeans_kernel.pyx`; build it with `pixi run build-ext` |
+| `sklearn-emeans` | sklearn-emeans | `sklearn.cluster.EMeans` of [cakedev0/scikit-learn#46](https://github.com/cakedev0/scikit-learn/pull/46) (Cython e-means, built from the PR commit by `pixi install -e sklearn-emeans`); `init` random or k-means++; its `fit` ends with a labels pass on the final centers (about one more epoch, included in the fit time) |
 | `emeans-gpu-bf16` | torch | e-means `Emeans` default on the GPU: FP32 input as BF16 operands (reduced precision) |
 | `cuml` | cuml | cuML 26.10 `KMeans`: `init` = `random`, `k-means++` (greedy), `scalable-k-means++` (k-means\|\|) |
 | `cupy`, `cupy-fused` | cupy | `kmeans_cupy(fused=False/True)` of [ogrisel/cursor-sandbox#22](https://github.com/ogrisel/cursor-sandbox/pull/22), pinned commit, fetched by `pixi run -e cupy fetch-kmeans-lloyd`; `init="random"` added by the adapter |

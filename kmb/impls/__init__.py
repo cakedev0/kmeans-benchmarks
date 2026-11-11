@@ -13,6 +13,7 @@ REGISTRY = {
     "sklearn-lloyd": ("cpu", "cpu", "kmb.impls.sklearn_impl:SklearnKMeans", {"algorithm": "lloyd"}),
     "sklearn-elkan": ("cpu", "cpu", "kmb.impls.sklearn_impl:SklearnKMeans", {"algorithm": "elkan"}),
     "sklearn-minibatch": ("cpu", "cpu", "kmb.impls.sklearn_impl:SklearnMiniBatch", {}),
+    "sklearn-emeans": ("sklearn-emeans", "cpu", "kmb.impls.sklearn_impl:SklearnEMeans", {}),
     "faiss-cpu": ("cpu", "cpu", "kmb.impls.faiss_impl:FaissKMeans", {"gpu": False}),
     "faiss-gpu": ("faiss-gpu", "gpu", "kmb.impls.faiss_impl:FaissKMeans", {"gpu": True}),
     "emeans-cpu": ("cpu", "cpu", "kmb.impls.emeans_impl:EmeansCPU", {}),

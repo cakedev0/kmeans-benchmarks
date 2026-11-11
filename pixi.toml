@@ -41,6 +41,27 @@ scikit-learn = { version = ">=1.10.dev0", index = "https://pypi.anaconda.org/sci
 [feature.cpu.pypi-options]
 prerelease-mode = "allow"
 
+# --- sklearn-emeans: scikit-learn built from cakedev0/scikit-learn#46 (EMeans, a Cython
+# e-means), branched from main after scikit-learn#35140. Built from source in this
+# environment (no build isolation), with its compilers and OpenMP.
+[feature.sklearn-emeans.dependencies]
+scipy = "*"
+joblib = "*"
+threadpoolctl = ">=3.8"   # joblib/threadpoolctl#283, see the PR description
+pytest = "*"
+meson-python = ">=0.17.1"
+ninja = "*"
+cython = ">=3.1"
+c-compiler = "*"
+cxx-compiler = "*"
+pip = "*"
+
+[feature.sklearn-emeans.pypi-dependencies]
+scikit-learn = { git = "https://github.com/cakedev0/scikit-learn.git", rev = "a80b4cf2895a0c68934eeba8aed64b06139290fc" }
+
+[feature.sklearn-emeans.pypi-options]
+no-build-isolation = ["scikit-learn"]
+
 # --- cuml: cuML on the GPU (pip wheels, as in the measurements of PROMPT.md)
 [feature.cuml]
 platforms = ["linux-64-cuda-13"]
@@ -89,6 +110,7 @@ faiss-cpu = "==1.16.0"
 [environments]
 default = { features = ["cpu"], solve-group = "cpu" }
 cpu = { features = ["cpu"], solve-group = "cpu" }
+sklearn-emeans = { features = ["sklearn-emeans"] }
 cuml = { features = ["cuml"], no-default-feature = false }
 cupy = { features = ["cupy"] }
 faiss-gpu = { features = ["faiss-gpu"] }

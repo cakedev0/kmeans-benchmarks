@@ -55,3 +55,24 @@ class SklearnMiniBatch(_Sklearn):
                          epochs=steps * params["batch_size"] / X.shape[0],
                          lib_inertia=float(km.inertia_) / X.shape[0],
                          extra={"n_epochs_run": int(km.n_iter_)})
+
+
+class SklearnEMeans(_Sklearn):
+    """``EMeans`` of cakedev0/scikit-learn#46 (pixi environment ``sklearn-emeans``).
+
+    Its ``fit`` ends with an assignment pass on the final centers (for ``labels_`` and
+    ``inertia_``, as ``KMeans``), about one more epoch, which is part of the fit time.
+    """
+
+    WARMUP_OVERRIDES = {"epochs": 0.1}
+    DEFAULTS = {"init": "random", "epochs": 5, "batch_size": "auto"}
+
+    def fit(self, X, k, params, seed):
+        from sklearn.cluster import EMeans
+
+        em = EMeans(n_clusters=k, init=params["init"], n_epochs=params["epochs"],
+                    batch_size=params["batch_size"], random_state=seed).fit(X)
+        return FitOutput(em.cluster_centers_, n_iter=int(em.n_steps_),
+                         epochs=float(params["epochs"]),
+                         lib_inertia=float(em.inertia_) / X.shape[0],
+                         extra={"batch_size": int(em.batch_size_)})

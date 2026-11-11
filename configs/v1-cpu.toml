@@ -69,3 +69,10 @@ grid = [
   { epochs = [0.5, 1, 2, 5, 10] },
   { epochs = [2, 5], batch_law = "quality" },
 ]
+
+# EMeans of cakedev0/scikit-learn#46 (pixi environment sklearn-emeans). Batch size from the
+# scaling law ("quality" law when d <= 16); fit ends with a labels pass on the final centers.
+[impls.sklearn-emeans]
+grid = [
+  { epochs = [0.5, 1, 2, 5, 10], init = ["random", "k-means++"] },
+]

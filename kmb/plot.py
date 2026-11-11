@@ -34,11 +34,12 @@ COLORS = {
     "emeans-gpu": "#e87ba4", "emeans-cpu": "#e87ba4",
     "sklearn-elkan": "#008300",
     "emeans-gpu-bf16": "#6250d6", "emeans-cpu-cython": "#6250d6",
+    "sklearn-emeans": "#0b8fb3",
 }
 MARKERS = {"cuml": "o", "sklearn-lloyd": "o", "cupy": "s", "sklearn-minibatch": "s",
            "cupy-fused": "D", "faiss-gpu": "^", "faiss-cpu": "^", "emeans-gpu": "v",
            "emeans-cpu": "v", "sklearn-elkan": "P", "emeans-gpu-bf16": "X",
-           "emeans-cpu-cython": "X"}
+           "emeans-cpu-cython": "X", "sklearn-emeans": "*"}
 INK, INK_2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
 FLOOR = 1e-7   # lowest possible floor; each figure uses one decade below its smallest value
 
