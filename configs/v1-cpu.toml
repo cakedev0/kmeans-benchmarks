@@ -44,12 +44,14 @@ grid = [
   { init = "k-means++", max_iter = 300, tol = 1e-4 },
 ]
 
-[impls.sklearn-minibatch]
-grid = [
-  { batch_size = [8192, 65536], max_iter = [1, 3, 10] },
-  { batch_size = 65536, max_iter = 30, max_no_improvement = "none" },
-  { batch_size = 1024, max_iter = 1 },
-]
+# Skipped for now (slow: ~230 s per epoch at batch_size=1024 on SUSY, from per-step
+# overhead). The GloVe, SIFT and CLIP runs are in the results.
+# [impls.sklearn-minibatch]
+# grid = [
+#   { batch_size = [8192, 65536], max_iter = [1, 3, 10] },
+#   { batch_size = 65536, max_iter = 30, max_no_improvement = "none" },
+#   { batch_size = 1024, max_iter = 1 },
+# ]
 
 [impls.faiss-cpu]
 grid = [
