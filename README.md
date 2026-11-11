@@ -7,7 +7,7 @@ dataset, one k and one piece of hardware, with one Pareto front per implementati
 Lower-left is better.
 
 The context and the requirements are in [PROMPT.md](PROMPT.md). **All the figures of the v1
-sweeps, with time-to-quality tables, are in [RESULTS.md](RESULTS.md).** The pilot results
+sweeps are in [RESULTS.md](RESULTS.md).** The pilot results
 are [below](#pilot-results-glove-200-k256).
 
 ## Quickstart (a few minutes, any Linux machine)

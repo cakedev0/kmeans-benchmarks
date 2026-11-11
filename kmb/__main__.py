@@ -31,7 +31,7 @@ def main(argv=None):
     p.add_argument("--out", default="plots")
     p.add_argument("--split-by", help="one front per value of this setting (e.g. init)")
 
-    p = sub.add_parser("report", help="write RESULTS.md: every figure, time-to-quality tables")
+    p = sub.add_parser("report", help="write RESULTS.md: every figure of the sweeps")
     p.add_argument("configs", nargs="+", help="sweep configs (e.g. configs/v1-gpu.toml)")
     p.add_argument("--plots", default="plots")
     p.add_argument("--out", default="RESULTS.md")

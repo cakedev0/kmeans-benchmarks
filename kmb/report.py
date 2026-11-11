@@ -1,7 +1,7 @@
-"""``RESULTS.md``: every figure of the sweeps, with time-to-quality tables.
+"""``RESULTS.md``: every figure of the sweeps.
 
 Built from the configs (to know which fits are expected), their results files and the
-per-figure CSVs that ``python -m kmb plot`` writes. Run it after the plots:
+figures that ``python -m kmb plot`` writes. Run it after the plots:
 
     pixi run python -m kmb plot results/v1-gpu.jsonl results/v1-cpu.jsonl results/reference.jsonl
     pixi run python -m kmb report configs/v1-gpu.toml configs/v1-cpu.toml
@@ -9,7 +9,6 @@ per-figure CSVs that ``python -m kmb plot`` writes. Run it after the plots:
 
 from __future__ import annotations
 
-import csv
 import json
 import time
 from collections import defaultdict
@@ -17,9 +16,6 @@ from pathlib import Path
 
 from kmb import config as kconfig
 from kmb import datasets
-
-THRESHOLDS = (1e-2, 3e-3, 1e-3)
-
 
 def _records(path: Path) -> list:
     out = []
@@ -54,25 +50,6 @@ def _figure_label(cfg, records) -> tuple:
     return machine, r["device"]
 
 
-def _time_to_quality(csv_path: Path, device: str) -> list:
-    rows = list(csv.DictReader(csv_path.open()))
-    out = []
-    for series in sorted({r["series"] for r in rows}):
-        pts = [(float(r["fit_s"]), float(r["rel"])) for r in rows if r["series"] == series]
-        cells = []
-        for t in THRESHOLDS:
-            ok = [f for f, rel in pts if rel <= t]
-            cells.append(min(ok) if ok else None)
-        out.append((series, device, cells, min(rel for _, rel in pts)))
-    return out
-
-
-def _fmt_s(v):
-    if v is None:
-        return "–"
-    return f"{v:.2f} s" if v < 10 else f"{v:.0f} s"
-
-
 def main(config_paths, plots="plots", out="RESULTS.md", reference="configs/reference.toml"):
     plots = Path(plots)
     cfgs = [kconfig.load(p) for p in config_paths]
@@ -102,8 +79,7 @@ def main(config_paths, plots="plots", out="RESULTS.md", reference="configs/refer
         "Hardware: "
         + "; ".join(f"{device.upper()} `{machine}` (config `{cfg.path.name}`)"
                     for cfg, machine, device, _ in figures)
-        + ". Time-to-quality tables give, for each implementation, the fastest setting whose "
-        "median relative inertia is at or below each threshold (– if none).",
+        + ". The per-point values are in the CSV next to each figure in `plots/`.",
         "",
     ]
     partial = [(cfg, machine, label, k, d, e) for cfg, machine, device, prog in figures
@@ -126,7 +102,6 @@ def main(config_paths, plots="plots", out="RESULTS.md", reference="configs/refer
         lines += [f"## {name}", "", f"{n:,} × {d}: {spec.source}. {spec.notes}", ""]
         for k in sorted(ks[name]):
             lines += [f"### {name}, k={k}", ""]
-            table = []
             for cfg, machine, device, prog in figures:
                 stem = f"{name}-k{k}-{machine}-{device}"
                 done, expected = prog.get((name, k), (0, 0))
@@ -138,15 +113,5 @@ def main(config_paths, plots="plots", out="RESULTS.md", reference="configs/refer
                           f"({plots / stem}.png)", ""]
                 if note:
                     lines += [f"*{device.upper()}{note}.*", ""]
-                table += _time_to_quality(plots / f"{stem}.csv", device)
-            if table:
-                head = " | ".join(f"≤ {t:g}" for t in THRESHOLDS)
-                lines += [f"| implementation | device | {head} | best reached |",
-                          "|---|---|" + "---|" * len(THRESHOLDS) + "---|"]
-                for series, device, cells, best in sorted(
-                        table, key=lambda r: (r[1], r[2][0] is None, r[2][0] or 0)):
-                    lines.append(f"| {series} | {device.upper()} | "
-                                 + " | ".join(_fmt_s(c) for c in cells) + f" | {best:.1e} |")
-                lines.append("")
     Path(out).write_text("\n".join(lines))
     print(f"wrote {out} ({len(figures)} configs, {len(order)} datasets)")
