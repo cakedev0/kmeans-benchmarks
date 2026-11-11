@@ -42,7 +42,7 @@ def _kwargs(params, seed):
 
 class EmeansCPU(Impl):
     DEFAULTS = _DEFAULTS
-    DISTRIBUTIONS = ("faiss-cpu", "libfaiss", "numpy")
+    DISTRIBUTIONS = ("faiss-cpu", "libfaiss", "numpy", "threadpoolctl")
 
     def setup(self):
         import faiss

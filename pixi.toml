@@ -22,7 +22,7 @@ channels = ["conda-forge", "pytorch"]
 [feature.cpu.dependencies]
 scipy = "*"
 joblib = "*"
-threadpoolctl = "*"
+threadpoolctl = ">=3.8"   # joblib/threadpoolctl#283: limits BLAS correctly under OpenMP
 faiss-cpu = { version = "1.16.*", channel = "pytorch" }
 libfaiss = { version = "1.16.*", channel = "pytorch" }
 matplotlib-base = ">=3.9"
