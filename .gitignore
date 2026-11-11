@@ -4,3 +4,6 @@ data/
 results/logs/
 __pycache__/
 *.pyc
+*.so
+kmb/_emeans_kernel.c
+build/

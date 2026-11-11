@@ -2,6 +2,7 @@
 exponential moving average updates and random init.
 
 - ``emeans-cpu``: ``NumpyEmeans`` on host data, searches with ``faiss.knn`` in float32.
+- ``emeans-cpu-cython``: the same, with its accumulation step in a compiled OpenMP kernel.
 - ``emeans-gpu``: ``QuantizedEmeans(quantizer=None)`` on a CUDA float32 tensor: native FP32
   with the Triton kernels (``input_precision="ieee"``), the fair comparison.
 - ``emeans-gpu-bf16``: ``Emeans`` on the same tensor, which converts FP32 input to BF16
@@ -56,6 +57,28 @@ class EmeansCPU(Impl):
         em = self.cls(X.shape[1], k, **_kwargs(params, seed))
         centers, _ = em.train(X)
         return _output(em, centers, params)
+
+
+class EmeansCPUCython(EmeansCPU):
+    """``NumpyEmeans`` with its accumulation step in an OpenMP Cython kernel
+    (``kmb/emeans_cpu.py``): same algorithm, same recipe, compiled step."""
+
+    def setup(self):
+        from threadpoolctl import threadpool_limits
+
+        from kmb.emeans_cpu import FastNumpyEmeans
+
+        # The parallelism is in the kernel's OpenMP loops; its sgemm calls must be serial.
+        self._limits = threadpool_limits(limits=1, user_api="blas")
+        self.cls = FastNumpyEmeans
+
+    def fit(self, X, k, params, seed):
+        em = self.cls(X.shape[1], k, n_threads=self.threads, **_kwargs(params, seed))
+        centers, _ = em.train(X)
+        return _output(em, centers, params)
+
+    def versions_extra(self):
+        return {"kernel": "kmb/_emeans_kernel.pyx (Cython, OpenMP)"}
 
 
 class EmeansGPU(Impl):

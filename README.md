@@ -13,6 +13,7 @@ The context and the requirements are in [PROMPT.md](PROMPT.md). The pilot result
 
 ```bash
 pixi install -e cpu                                   # scikit-learn nightly, FAISS 1.16 CPU
+pixi run build-ext                                    # the e-means CPU kernel (Cython, OpenMP)
 pixi run python -m kmb data year-msd                  # downloads 211 MB, writes data/year-msd.npy
 pixi run python -m kmb run configs/quickstart.toml    # 16 jobs, 48 fits, ~1 min on a laptop
 pixi run python -m kmb plot                           # plots/<dataset>-k<k>-<machine>-<device>.png
@@ -171,10 +172,15 @@ plots and per-point CSVs in `plots/`.
   share the front at short budgets. FAISS's default subsampling (`max_points_per_centroid
   =256`) gives 2.9e-2 in 0.2 s; on all the data it is the fastest at ≤10 iterations
   (0.9 s at 43 threads, 1.7 s at 86).
-- **e-means on the CPU does not dominate**: one epoch costs ~2 s whatever the thread count
-  (73 steps, ~30 ms each: per-step work that does not scale with threads), so it only
-  matches scikit-learn Lloyd with k-means++ (1.1e-3 in 4 s against 1.8e-3 in 3.6 s and
-  9.6e-4 in 6.2 s).
+- **FAISS's CPU e-means is slowed down by `np.add.at`**: one epoch costs ~2 s whatever the
+  thread count, of which 75% is `np.add.at(sums, labels, rows)` (22 ms per 16,384-row
+  step, against 0.7 ms for `faiss.knn`). In this pilot it only matches scikit-learn Lloyd
+  with k-means++. `emeans-cpu-cython` replaces that step by an OpenMP Cython kernel
+  (`kmb/_emeans_kernel.pyx`, the rest of the algorithm is FAISS's code). In an
+  interleaved A/B on one socket at 43 threads it is 8x, 13x and 18x faster at 1, 2 and 5
+  epochs (0.27, 0.30 and 0.53 s against 2.19, 3.95 and 9.63 s), with the same inertia.
+  That puts ~1.2e-3 relative inertia at 0.3 s, where the best Lloyd setting needs 6 s for
+  9.6e-4. It runs in the v1 CPU sweep.
 - **MiniBatchKMeans is far behind**: 5 to 12% above the best inertia, and its early stopping
   (`max_no_improvement=10`) ends the batch-8192, 10-epoch runs after ~2 epochs. Compare e-means at
   0.5 epoch (0.9%).
@@ -204,6 +210,7 @@ plots and per-point CSVs in `plots/`.
 | `sklearn-minibatch` | cpu | `MiniBatchKMeans`, `max_iter` counts epochs |
 | `faiss-cpu`, `faiss-gpu` | cpu, faiss-gpu | `faiss.Kmeans` 1.16 (Lloyd, random init, fixed `niter`, `nredo` inits) |
 | `emeans-cpu`, `emeans-gpu` | cpu, torch | e-means from `faiss.contrib.e_means` 1.16: `NumpyEmeans`, `QuantizedEmeans(quantizer=None)` (native FP32, Triton kernels) |
+| `emeans-cpu-cython` | cpu | `NumpyEmeans` with its accumulation step (assignment, counting sort, per-cluster sums) in an OpenMP Cython kernel, `kmb/_emeans_kernel.pyx`; build it with `pixi run build-ext` |
 | `emeans-gpu-bf16` | torch | e-means `Emeans` default on the GPU: FP32 input as BF16 operands (reduced precision) |
 | `cuml` | cuml | cuML 26.10 `KMeans`: `init` = `random`, `k-means++` (greedy), `scalable-k-means++` (k-means\|\|) |
 | `cupy`, `cupy-fused` | cupy | `kmeans_cupy(fused=False/True)` of [ogrisel/cursor-sandbox#22](https://github.com/ogrisel/cursor-sandbox/pull/22), pinned commit, fetched by `pixi run -e cupy fetch-kmeans-lloyd`; `init="random"` added by the adapter |

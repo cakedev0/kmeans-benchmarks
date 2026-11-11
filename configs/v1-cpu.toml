@@ -62,3 +62,10 @@ grid = [
   { epochs = [0.5, 1, 2, 5, 10] },
   { epochs = [2, 5], batch_law = "quality" },
 ]
+
+# NumpyEmeans with its accumulation step in an OpenMP Cython kernel (pixi run build-ext)
+[impls.emeans-cpu-cython]
+grid = [
+  { epochs = [0.5, 1, 2, 5, 10] },
+  { epochs = [2, 5], batch_law = "quality" },
+]

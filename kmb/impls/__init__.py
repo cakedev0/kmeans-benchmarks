@@ -16,6 +16,7 @@ REGISTRY = {
     "faiss-cpu": ("cpu", "cpu", "kmb.impls.faiss_impl:FaissKMeans", {"gpu": False}),
     "faiss-gpu": ("faiss-gpu", "gpu", "kmb.impls.faiss_impl:FaissKMeans", {"gpu": True}),
     "emeans-cpu": ("cpu", "cpu", "kmb.impls.emeans_impl:EmeansCPU", {}),
+    "emeans-cpu-cython": ("cpu", "cpu", "kmb.impls.emeans_impl:EmeansCPUCython", {}),
     "emeans-gpu": ("torch", "gpu", "kmb.impls.emeans_impl:EmeansGPU", {"bf16": False}),
     "emeans-gpu-bf16": ("torch", "gpu", "kmb.impls.emeans_impl:EmeansGPU", {"bf16": True}),
     "cuml": ("cuml", "gpu", "kmb.impls.cuml_impl:CumlKMeans", {}),
