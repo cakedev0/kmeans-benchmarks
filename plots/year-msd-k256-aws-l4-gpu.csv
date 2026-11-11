@@ -1,69 +1,69 @@
 series,settings,on_front,fit_s,fit_s_min,fit_s_max,rel,rel_min,rel_max,n_seeds,n_iter_median,n_empty_max,peak_mem_mb_median,gpu_sm_clock_mean
-cuml,init=random max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,True,0.0284,0.028296,0.032896,0.0376963,0.0362475,0.0377125,3,3,0,14,1980
-cuml,init=random max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,True,0.067636,0.065929,0.071936,0.0137189,0.0133061,0.0141074,3,10,0,14,1945
-cuml,init=random max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,True,0.186254,0.186231,0.191001,0.00524896,0.0043174,0.00593163,3,30,0,14,1665.47
-cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,True,0.234092,0.225389,0.237224,0.00433723,0.0029397,0.00527041,3,38,0,14,1673.1
-cuml,init=scalable-k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,0.392243,0.370833,0.396558,0.07446,0.0735868,0.0837829,3,3,0,26,1662.97
-cuml,init=scalable-k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,False,0.431402,0.41096,0.437833,0.0517024,0.0513485,0.057216,3,10,0,26,1650.03
-cuml,init=scalable-k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,0.558237,0.535409,0.560438,0.0365365,0.0354358,0.040984,3,30,0,26,1601.83
-cuml,init=random max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,0.605014,0.601229,0.611263,0.00155184,0.00129435,0.00240079,3,100,0,14,1562.77
-cuml,init=random max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,0.683907,0.673206,0.717311,0.00360616,0.00296431,0.00402507,3,37,0,14,1547.93
-cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,False,0.705335,0.69393,0.722427,0.0320497,0.0304958,0.0350851,3,56,0,26,1556.43
-cuml,init=k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,0.953272,0.951789,0.96475,0.0221496,0.0201877,0.0237942,3,3,0,34,1465
-cuml,init=scalable-k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,False,0.977707,0.956625,0.981613,0.0280981,0.0273278,0.0329831,3,100,0,26,1557.37
-cuml,init=k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,False,0.994084,0.992137,1.00683,0.00776519,0.00734656,0.00807752,3,10,0,34,1465.4
-cuml,init=k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,1.12923,1.11795,1.13426,0.00290279,0.00248272,0.00299347,3,30,0,34,1464.2
-cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,False,1.13488,1.13027,1.15327,0.0026189,0.0022487,0.00295331,3,32,0,34,1438
-cuml,init=k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,1.53927,1.53583,1.5487,0.00077034,0.000715617,0.000878076,3,100,0,34,1449.6
-cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,1.80055,1.79334,1.807,0.000918496,0.000753643,0.00166219,3,300,0,14,1492.2
-cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,2.18697,2.17182,2.18971,0.0254282,0.0237809,0.0294315,3,300,0,26,1483.5
-cuml,init=scalable-k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,2.18786,2.05923,2.24702,0.0284558,0.0275135,0.0290737,3,60,0,26,1541.3
-cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,True,2.73743,2.73212,2.74763,0.000232814,0.000162809,0.000363359,3,300,0,34,1447.97
-cuml,init=k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,3.35955,3.33506,3.40513,0.00229924,0.00188576,0.00296195,3,29,0,34,1410.67
-cupy,init=random max_iter=3 n_init=1 tol=1e-09,True,0.064,0.060999,0.064116,0.0381007,0.036028,0.0387313,3,3,0,692,1790
-cupy,init=random max_iter=10 n_init=1 tol=1e-09,True,0.113896,0.10892,0.114535,0.0142352,0.0126715,0.0156046,3,10,0,692,1518.57
-cupy,init=random max_iter=30 n_init=1 tol=1e-09,True,0.273899,0.270037,0.275025,0.00507013,0.00442148,0.00575959,3,30,0,692,1169
-cupy,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,0.400095,0.399541,0.401711,0.0212832,0.0206679,0.0213332,3,3,0,864,1404.53
-cupy,init=k-means++ max_iter=10 n_init=1 tol=1e-09,False,0.451614,0.448017,0.45411,0.00778935,0.00676573,0.0079694,3,10,0,864,1330.57
-cupy,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,0.609984,0.603273,0.611574,0.00283295,0.00251489,0.00301107,3,30,0,864,1242.4
-cupy,init=random max_iter=100 n_init=1 tol=1e-09,True,0.834275,0.827022,0.843573,0.0021282,0.00160128,0.00253994,3,100,0,692,993.433
-cupy,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,1.19156,1.18966,1.21755,0.000848255,0.00075058,0.0010707,3,100,0,864,1041.37
-cupy,init=random max_iter=300 n_init=1 tol=0.0001,False,2.46558,2.44916,2.53956,0.0012569,0.00103034,0.00156711,3,300,0,692,911.233
-cupy,init=random max_iter=300 n_init=1 tol=1e-09,False,2.47733,2.44184,2.48645,0.0015397,0.000858323,0.00159695,3,300,0,692,919.433
-cupy,init=k-means++ max_iter=300 n_init=1 tol=1e-09,True,2.78402,2.65799,2.81588,0.000483284,0.000280168,0.000843263,3,296,0,864,964.967
-cupy,init=k-means++ max_iter=300 n_init=1 tol=0.0001,False,2.83181,2.82094,2.83463,0.000508996,0.000231742,0.000716201,3,300,0,864,944.533
-cupy-fused,init=random max_iter=3 n_init=1 tol=1e-09,True,0.043789,0.042701,0.045553,0.0381007,0.036028,0.0387313,3,3,0,178,1982.5
-cupy-fused,init=random max_iter=10 n_init=1 tol=1e-09,True,0.071302,0.070508,0.074238,0.0142336,0.0126701,0.0156045,3,10,0,178,1695
-cupy-fused,init=random max_iter=30 n_init=1 tol=1e-09,True,0.171575,0.16874,0.17567,0.00507784,0.00442101,0.00576148,3,30,0,178,1437.5
-cupy-fused,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,0.293299,0.293041,0.294067,0.0212832,0.0206679,0.0213332,3,3,0,178,1365.33
-cupy-fused,init=k-means++ max_iter=10 n_init=1 tol=1e-09,False,0.321148,0.320341,0.322016,0.00778928,0.00676588,0.0079694,3,10,0,178,1311.77
-cupy-fused,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,0.421192,0.418507,0.432919,0.00282808,0.0025117,0.00303602,3,30,0,178,1273.1
-cupy-fused,init=random max_iter=100 n_init=1 tol=1e-09,True,0.522281,0.513965,0.537174,0.00206042,0.00164033,0.00264681,3,100,0,178,1187.43
-cupy-fused,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,0.774751,0.764829,0.790415,0.000889229,0.000788832,0.00108953,3,100,0,178,1168.7
-cupy-fused,init=random max_iter=300 n_init=1 tol=1e-09,False,1.5188,1.51456,1.54517,0.0013467,0.000760342,0.00157734,3,300,0,178,1080.93
-cupy-fused,init=random max_iter=300 n_init=1 tol=0.0001,False,1.53748,1.52526,1.56319,0.00127296,0.000807358,0.00157343,3,300,0,178,1084.33
-cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=1e-09,True,1.7859,1.76383,1.79529,0.00050984,0.000257751,0.000713798,3,300,0,178,1086.77
-cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,1.79501,1.49188,1.79517,0.000463572,0.000153191,0.000715648,3,300,0,178,1086.33
-cupy-fused,init=random max_iter=300 n_init=3 tol=0.0001,False,4.75863,4.75745,4.81789,0.00114139,0.000785172,0.00136138,3,300,0,356,1015.3
-cupy-fused,init=k-means++ max_iter=300 n_init=3 tol=0.0001,True,5.46837,5.40098,5.48539,3.29725e-05,0,8.56211e-05,3,300,0,358,1041.57
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.014056,0.013672,0.014334,0.0372766,0.0364116,0.037903,3,63,0,20,2040
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=1,False,0.01589,0.01574,0.01618,0.043883,0.0436959,0.0476459,3,63,0,20,2040
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.020771,0.020047,0.020921,0.0257617,0.0246211,0.0272032,3,64,0,62,2040
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=3,True,0.029168,0.028749,0.029859,0.0230618,0.021639,0.0235117,3,96,0,62,2010
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=5,True,0.037451,0.037008,0.038214,0.0159452,0.0156292,0.0185006,3,80,0,66,1933.33
-emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=2,False,0.057803,0.057019,0.058556,0.0288914,0.0254153,0.028942,3,504,0,24,2035
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=10,False,0.073896,0.073793,0.075821,0.0172463,0.0161168,0.0179691,3,80,0,96,1745
-emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=5,False,0.090385,0.089327,0.091891,0.0182294,0.016615,0.0194462,3,630,0,62,2025
-emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=10,False,0.114196,0.113458,0.11441,0.0182465,0.0175886,0.0191513,3,630,0,62,2023.57
-emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=20,False,0.147014,0.145276,0.147785,0.0160158,0.0137194,0.0162992,3,160,0,96,1555.57
-emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.013427,0.013201,0.013721,0.037777,0.0371193,0.0402173,3,63,0,22,2040
-emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=1,False,0.015165,0.014967,0.015509,0.047412,0.0451199,0.0480131,3,63,0,20,2025
-emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.018551,0.018507,0.01886,0.0247189,0.0245466,0.0297157,3,64,0,40,2032.5
-emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=5,True,0.034866,0.033591,0.036433,0.0173434,0.0153739,0.0179064,3,80,0,66,1973.33
-emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=10,True,0.061313,0.060202,0.061732,0.0166435,0.0143204,0.0185021,3,80,0,108,1807.5
-emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=20,True,0.118054,0.116625,0.118439,0.0158413,0.0139204,0.0165909,3,160,0,108,1675
-faiss-gpu,max_points_per_centroid=None niter=3 nredo=1,True,0.371159,0.361766,0.393005,0.0363741,0.0356963,0.0389085,3,3,0,1546,2040
-faiss-gpu,max_points_per_centroid=256 niter=25 nredo=1,True,0.390879,0.375218,0.430119,0.0240523,0.0235922,0.024069,3,25,0,1546,2040
-faiss-gpu,max_points_per_centroid=None niter=10 nredo=1,True,0.635046,0.628766,0.656783,0.0148965,0.01302,0.0152752,3,10,0,1546,2040
-faiss-gpu,max_points_per_centroid=None niter=25 nredo=1,True,1.20992,1.20761,1.23208,0.00661571,0.00543692,0.00668467,3,25,0,1546,2040
-faiss-gpu,max_points_per_centroid=None niter=100 nredo=1,True,4.10316,4.08575,4.13581,0.00158744,0.00147368,0.00212463,3,100,0,1546,2040
+cuml,init=random max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,True,0.0284,0.028296,0.032896,0.0379106,0.0364614,0.0379267,3,3,0,14,1980
+cuml,init=random max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,True,0.067636,0.065929,0.071936,0.0139282,0.0135153,0.0143168,3,10,0,14,1945
+cuml,init=random max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,True,0.186254,0.186231,0.191001,0.00545651,0.00452476,0.00613932,3,30,0,14,1665.47
+cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,True,0.234092,0.225389,0.237224,0.00454459,0.00314677,0.00547796,3,38,0,14,1673.1
+cuml,init=scalable-k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,0.392243,0.370833,0.396558,0.0746818,0.0738085,0.0840067,3,3,0,26,1662.97
+cuml,init=scalable-k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,False,0.431402,0.41096,0.437833,0.0519196,0.0515655,0.0574343,3,10,0,26,1650.03
+cuml,init=scalable-k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,0.558237,0.535409,0.560438,0.0367506,0.0356495,0.0411989,3,30,0,26,1601.83
+cuml,init=random max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,0.605014,0.601229,0.611263,0.00175862,0.00150108,0.00260775,3,100,0,14,1562.77
+cuml,init=random max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,0.683907,0.673206,0.717311,0.00381337,0.00317139,0.00423237,3,37,0,14,1547.93
+cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,False,0.705335,0.69393,0.722427,0.0322628,0.0307085,0.0352988,3,56,0,26,1556.43
+cuml,init=k-means++ max_iter=3 n_init=1 oversampling_factor=2 tol=1e-09,False,0.953272,0.951789,0.96475,0.0223607,0.0203983,0.0240056,3,3,0,34,1465
+cuml,init=scalable-k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,False,0.977707,0.956625,0.981613,0.0283104,0.0275399,0.0331963,3,100,0,26,1557.37
+cuml,init=k-means++ max_iter=10 n_init=1 oversampling_factor=2 tol=1e-09,False,0.994084,0.992137,1.00683,0.00797325,0.00755454,0.00828565,3,10,0,34,1465.4
+cuml,init=k-means++ max_iter=30 n_init=1 oversampling_factor=2 tol=1e-09,False,1.12923,1.11795,1.13426,0.00310986,0.00268969,0.00320055,3,30,0,34,1464.2
+cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=0.0001,False,1.13488,1.13027,1.15327,0.0028259,0.00245563,0.00316039,3,32,0,34,1438
+cuml,init=k-means++ max_iter=100 n_init=1 oversampling_factor=2 tol=1e-09,True,1.53927,1.53583,1.5487,0.000976963,0.000922229,0.00108472,3,100,0,34,1449.6
+cuml,init=random max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,1.80055,1.79334,1.807,0.00112515,0.000960263,0.001869,3,300,0,14,1492.2
+cuml,init=scalable-k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,False,2.18697,2.17182,2.18971,0.0256399,0.0239923,0.029644,3,300,0,26,1483.5
+cuml,init=scalable-k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,2.18786,2.05923,2.24702,0.0286681,0.0277257,0.0292862,3,60,0,26,1541.3
+cuml,init=k-means++ max_iter=300 n_init=1 oversampling_factor=2 tol=1e-09,True,2.73743,2.73212,2.74763,0.000439327,0.000369306,0.000569898,3,300,0,34,1447.97
+cuml,init=k-means++ max_iter=300 n_init=3 oversampling_factor=2 tol=0.0001,False,3.35955,3.33506,3.40513,0.00250618,0.00209261,0.00316902,3,29,0,34,1410.67
+cupy,init=random max_iter=3 n_init=1 tol=1e-09,True,0.064,0.060999,0.064116,0.038315,0.0362419,0.0389457,3,3,0,692,1790
+cupy,init=random max_iter=10 n_init=1 tol=1e-09,True,0.113896,0.10892,0.114535,0.0144446,0.0128806,0.0158142,3,10,0,692,1518.57
+cupy,init=random max_iter=30 n_init=1 tol=1e-09,True,0.273899,0.270037,0.275025,0.00527764,0.00462886,0.00596724,3,30,0,692,1169
+cupy,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,0.400095,0.399541,0.401711,0.0214941,0.0208786,0.021544,3,3,0,864,1404.53
+cupy,init=k-means++ max_iter=10 n_init=1 tol=1e-09,False,0.451614,0.448017,0.45411,0.00799742,0.00697359,0.00817751,3,10,0,864,1330.57
+cupy,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,0.609984,0.603273,0.611574,0.00303999,0.00272187,0.00321815,3,30,0,864,1242.4
+cupy,init=random max_iter=100 n_init=1 tol=1e-09,True,0.834275,0.827022,0.843573,0.0023351,0.00180807,0.00274693,3,100,0,692,993.433
+cupy,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,1.19156,1.18966,1.21755,0.00105489,0.000957199,0.00127738,3,100,0,864,1041.37
+cupy,init=random max_iter=300 n_init=1 tol=0.0001,False,2.46558,2.44916,2.53956,0.00146362,0.00123701,0.0017739,3,300,0,692,911.233
+cupy,init=random max_iter=300 n_init=1 tol=1e-09,False,2.47733,2.44184,2.48645,0.00174648,0.00106496,0.00180374,3,300,0,692,919.433
+cupy,init=k-means++ max_iter=300 n_init=1 tol=1e-09,True,2.78402,2.65799,2.81588,0.000689848,0.00048669,0.0010499,3,296,0,864,964.967
+cupy,init=k-means++ max_iter=300 n_init=1 tol=0.0001,False,2.83181,2.82094,2.83463,0.000715565,0.000438254,0.000922813,3,300,0,864,944.533
+cupy-fused,init=random max_iter=3 n_init=1 tol=1e-09,True,0.043789,0.042701,0.045553,0.038315,0.0362419,0.0389457,3,3,0,178,1982.5
+cupy-fused,init=random max_iter=10 n_init=1 tol=1e-09,True,0.071302,0.070508,0.074238,0.014443,0.0128792,0.0158142,3,10,0,178,1695
+cupy-fused,init=random max_iter=30 n_init=1 tol=1e-09,True,0.171575,0.16874,0.17567,0.00528536,0.00462839,0.00596913,3,30,0,178,1437.5
+cupy-fused,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,0.293299,0.293041,0.294067,0.0214941,0.0208786,0.021544,3,3,0,178,1365.33
+cupy-fused,init=k-means++ max_iter=10 n_init=1 tol=1e-09,False,0.321148,0.320341,0.322016,0.00799735,0.00697374,0.00817751,3,10,0,178,1311.77
+cupy-fused,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,0.421192,0.418507,0.432919,0.00303513,0.00271868,0.00324311,3,30,0,178,1273.1
+cupy-fused,init=random max_iter=100 n_init=1 tol=1e-09,True,0.522281,0.513965,0.537174,0.00226731,0.00184713,0.00285382,3,100,0,178,1187.43
+cupy-fused,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,0.774751,0.764829,0.790415,0.00109588,0.000995459,0.00129622,3,100,0,178,1168.7
+cupy-fused,init=random max_iter=300 n_init=1 tol=1e-09,False,1.5188,1.51456,1.54517,0.00155344,0.000966963,0.00178413,3,300,0,178,1080.93
+cupy-fused,init=random max_iter=300 n_init=1 tol=0.0001,False,1.53748,1.52526,1.56319,0.00147968,0.00101399,0.00178022,3,300,0,178,1084.33
+cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=1e-09,True,1.7859,1.76383,1.79529,0.00071641,0.000464268,0.00092041,3,300,0,178,1086.77
+cupy-fused,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,1.79501,1.49188,1.79517,0.000670132,0.000359687,0.00092226,3,300,0,178,1086.33
+cupy-fused,init=random max_iter=300 n_init=3 tol=0.0001,False,4.75863,4.75745,4.81789,0.00134809,0.000991798,0.00156812,3,300,0,356,1015.3
+cupy-fused,init=k-means++ max_iter=300 n_init=3 tol=0.0001,True,5.46837,5.40098,5.48539,0.000239444,0.000206464,0.000292103,3,300,0,358,1041.57
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.014056,0.013672,0.014334,0.0374908,0.0366256,0.0381173,3,63,0,20,2040
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=1,False,0.01589,0.01574,0.01618,0.0440985,0.0439114,0.0478622,3,63,0,20,2040
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.020771,0.020047,0.020921,0.0259735,0.0248327,0.0274152,3,64,0,62,2040
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=3,True,0.029168,0.028749,0.029859,0.0232731,0.02185,0.023723,3,96,0,62,2010
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=5,True,0.037451,0.037008,0.038214,0.0161549,0.0158389,0.0187109,3,80,0,66,1933.33
+emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=2,False,0.057803,0.057019,0.058556,0.0291038,0.025627,0.0291544,3,504,0,24,2035
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=10,False,0.073896,0.073793,0.075821,0.0174564,0.0163266,0.0181793,3,80,0,96,1745
+emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=5,False,0.090385,0.089327,0.091891,0.0184396,0.0168249,0.0196567,3,630,0,62,2025
+emeans-gpu,alpha0=None batch_law=quality batch_size=None epochs=10,False,0.114196,0.113458,0.11441,0.0184567,0.0177986,0.0193617,3,630,0,62,2023.57
+emeans-gpu,alpha0=None batch_law=auto batch_size=None epochs=20,False,0.147014,0.145276,0.147785,0.0162256,0.0139287,0.016509,3,160,0,96,1555.57
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.013427,0.013201,0.013721,0.0379913,0.0373334,0.040432,3,63,0,22,2040
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=1,False,0.015165,0.014967,0.015509,0.0476283,0.0453357,0.0482295,3,63,0,20,2025
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.018551,0.018507,0.01886,0.0249305,0.0247582,0.0299283,3,64,0,40,2032.5
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=5,True,0.034866,0.033591,0.036433,0.0175534,0.0155835,0.0181166,3,80,0,66,1973.33
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=10,True,0.061313,0.060202,0.061732,0.0168534,0.0145299,0.0187124,3,80,0,108,1807.5
+emeans-gpu-bf16,alpha0=None batch_law=auto batch_size=None epochs=20,True,0.118054,0.116625,0.118439,0.0160511,0.0141298,0.0168008,3,160,0,108,1675
+faiss-gpu,max_points_per_centroid=None niter=3 nredo=1,True,0.371159,0.361766,0.393005,0.0365881,0.0359101,0.039123,3,3,0,1546,2040
+faiss-gpu,max_points_per_centroid=256 niter=25 nredo=1,True,0.390879,0.375218,0.430119,0.0242637,0.0238035,0.0242805,3,25,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=10 nredo=1,True,0.635046,0.628766,0.656783,0.015106,0.0132291,0.0154849,3,10,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=25 nredo=1,True,1.20992,1.20761,1.23208,0.00682354,0.00564451,0.00689252,3,25,0,1546,2040
+faiss-gpu,max_points_per_centroid=None niter=100 nredo=1,True,4.10316,4.08575,4.13581,0.00179424,0.00168045,0.00233153,3,100,0,1546,2040

@@ -1,4 +1,4 @@
-"""Command line: ``python -m kmb {run,data,plot,list}``."""
+"""Command line: ``python -m kmb {run,data,plot,report,list}``."""
 
 from __future__ import annotations
 
@@ -31,6 +31,11 @@ def main(argv=None):
     p.add_argument("--out", default="plots")
     p.add_argument("--split-by", help="one front per value of this setting (e.g. init)")
 
+    p = sub.add_parser("report", help="write RESULTS.md: every figure, time-to-quality tables")
+    p.add_argument("configs", nargs="+", help="sweep configs (e.g. configs/v1-gpu.toml)")
+    p.add_argument("--plots", default="plots")
+    p.add_argument("--out", default="RESULTS.md")
+
     sub.add_parser("list", help="list implementations and their default settings")
 
     args = parser.parse_args(argv)
@@ -58,6 +63,10 @@ def main(argv=None):
         from kmb import plot
 
         plot.main(args.results or None, args.out, args.split_by)
+    elif args.cmd == "report":
+        from kmb import report
+
+        report.main(args.configs, args.plots, args.out)
     elif args.cmd == "list":
         from kmb import impls
 

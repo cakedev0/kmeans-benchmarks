@@ -1,0 +1,2 @@
+series,settings,on_front,fit_s,fit_s_min,fit_s_max,rel,rel_min,rel_max,n_seeds,n_iter_median,n_empty_max,peak_mem_mb_median,gpu_sm_clock_mean
+sklearn-lloyd,init=random max_iter=3 n_init=1 tol=1e-09,True,0.659563,0.642435,0.663195,0.454797,0.368288,0.666438,3,3,0,126.633,nan

@@ -6,8 +6,9 @@ lowest inertia?** Each figure plots fit time (log x) against relative inertia (l
 dataset, one k and one piece of hardware, with one Pareto front per implementation.
 Lower-left is better.
 
-The context and the requirements are in [PROMPT.md](PROMPT.md). The pilot results are
-[below](#pilot-results-glove-200-k256).
+The context and the requirements are in [PROMPT.md](PROMPT.md). **All the figures of the v1
+sweeps, with time-to-quality tables, are in [RESULTS.md](RESULTS.md).** The pilot results
+are [below](#pilot-results-glove-200-k256).
 
 ## Quickstart (a few minutes, any Linux machine)
 
@@ -40,7 +41,13 @@ ssh aws-l4-2 'bash -lc "cd ~/work/kmeans-benchmarks && benchlock --tag \"kmb gpu
   pixi run python -m kmb run configs/pilot-glove-k256-gpu.toml --machine aws-l4"'
 ```
 
-Then copy `results/*.jsonl` back and run `python -m kmb plot`.
+Then copy `results/*.jsonl` back, and plot and write `RESULTS.md`. Name the files: with
+no argument, `plot` reads every `results/*.jsonl`, and would pool pilot and v1 seeds.
+
+```bash
+pixi run python -m kmb plot results/v1-gpu.jsonl results/v1-cpu.jsonl results/reference.jsonl
+pixi run python -m kmb report configs/v1-gpu.toml configs/v1-cpu.toml
+```
 
 ## How it works
 
@@ -286,7 +293,8 @@ kmb/runner.py      orchestrates subprocesses, resume     kmb/plot.py     Pareto 
 kmb/worker.py      timed fits in one environment         kmb/sysinfo.py  versions, NVML, RSS
 kmb/datasets.py    download, convert, load               kmb/vendor.py   pinned kmeans_lloyd
 kmb/impls/         one adapter per library               configs/        sweeps
-tests/             evaluator and config tests            results/        JSON lines (committed)
+kmb/report.py      RESULTS.md from plots and configs     results/        JSON lines (committed)
+tests/             evaluator and config tests            plots/          figures + CSVs
 ```
 
 To add an implementation: subclass `kmb.impls.base.Impl` (`DEFAULTS`, `DISTRIBUTIONS`,

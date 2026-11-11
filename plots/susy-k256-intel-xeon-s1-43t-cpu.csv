@@ -1,0 +1,44 @@
+series,settings,on_front,fit_s,fit_s_min,fit_s_max,rel,rel_min,rel_max,n_seeds,n_iter_median,n_empty_max,peak_mem_mb_median,gpu_sm_clock_mean
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.832221,0.829924,0.832546,0.0276394,0.0238411,0.0293237,3,76,0,39.6914,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=1,True,1.42673,1.41608,1.44057,0.0271909,0.0264562,0.0284811,3,77,0,48.7734,nan
+emeans-cpu,alpha0=None batch_law=quality batch_size=None epochs=2,True,2.89113,2.87652,2.92491,0.0146072,0.0116383,0.0202483,3,612,0,71.1484,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,2.91599,2.79659,2.92204,0.011916,0.0106045,0.0143715,3,78,0,71.2734,nan
+emeans-cpu,alpha0=None batch_law=quality batch_size=None epochs=5,True,6.75842,6.70921,6.78909,0.00740904,0.00726864,0.0122003,3,765,0,87.6016,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=5,False,7.09341,6.99491,7.31056,0.00948386,0.00916103,0.0104818,3,100,0,91.0664,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=10,True,12.9509,12.8085,13.3942,0.0065444,0.00607044,0.00678957,3,200,0,83.125,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.315644,0.311057,0.355081,0.0279077,0.0276434,0.0294188,3,76,0,59.0859,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=1,True,0.449246,0.439962,0.482886,0.0264601,0.0251695,0.0271582,3,77,0,57.7656,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=2,True,0.706452,0.705618,0.753907,0.0119196,0.0107995,0.0142616,3,78,0,95.8711,nan
+emeans-cpu-cython,alpha0=None batch_law=quality batch_size=None epochs=2,False,1.02224,1.01092,1.05367,0.0145906,0.00700012,0.0191014,3,612,0,104.387,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=5,True,1.51869,1.51589,1.59733,0.0096091,0.00894021,0.0103094,3,100,0,30.375,nan
+emeans-cpu-cython,alpha0=None batch_law=quality batch_size=None epochs=5,True,1.9006,1.82699,1.97761,0.00927652,0.00695177,0.0100849,3,765,0,99.3672,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=10,True,2.36425,2.35763,2.51441,0.00602747,0.00562835,0.00707874,3,200,0,66.3945,nan
+faiss-cpu,max_points_per_centroid=256 niter=25 nredo=1,True,0.150599,0.14948,0.152428,0.0289705,0.0269173,0.0314864,3,25,0,32.6289,nan
+faiss-cpu,max_points_per_centroid=None niter=3 nredo=1,False,0.707125,0.680664,0.71401,0.0783816,0.0746918,0.0794243,3,3,0,10.1016,nan
+faiss-cpu,max_points_per_centroid=None niter=10 nredo=1,False,1.60358,1.60279,1.64776,0.0299528,0.02877,0.0299593,3,10,0,0,nan
+faiss-cpu,max_points_per_centroid=None niter=25 nredo=1,True,4.76842,4.69159,4.83399,0.0123778,0.0116863,0.0127854,3,25,0,3.45312,nan
+faiss-cpu,max_points_per_centroid=None niter=100 nredo=1,True,17.0072,16.9961,17.1749,0.00434298,0.00230775,0.00445407,3,100,0,14.0117,nan
+sklearn-emeans,batch_size=auto epochs=0.5 init=random,True,0.363496,0.362866,0.368465,0.0252653,0.0239606,0.0277009,3,77,0,85.8281,nan
+sklearn-emeans,batch_size=auto epochs=1 init=random,False,0.428691,0.425873,0.431576,0.0258753,0.0234087,0.0266403,3,77,0,82.7852,nan
+sklearn-emeans,batch_size=auto epochs=2 init=random,True,0.620283,0.619747,0.62687,0.0120465,0.00920054,0.0131802,3,78,0,80.457,nan
+sklearn-emeans,batch_size=auto epochs=5 init=random,True,1.20827,1.20634,1.21353,0.00879818,0.00865801,0.00966814,3,100,0,96.0781,nan
+sklearn-emeans,batch_size=auto epochs=0.5 init=k-means++,False,1.62237,1.59602,1.63434,0.0262021,0.0217463,0.0288453,3,77,0,252.5,nan
+sklearn-emeans,batch_size=auto epochs=1 init=k-means++,False,1.72675,1.66811,1.76362,0.024725,0.0225173,0.027241,3,77,0,244.195,nan
+sklearn-emeans,batch_size=auto epochs=2 init=k-means++,False,1.8994,1.84533,1.94385,0.011518,0.0105041,0.0117366,3,78,0,252.074,nan
+sklearn-emeans,batch_size=auto epochs=10 init=random,True,2.27605,2.24548,2.28373,0.005408,0.00513781,0.00777075,3,200,0,98.4766,nan
+sklearn-emeans,batch_size=auto epochs=5 init=k-means++,False,2.62205,2.51733,2.93414,0.0078422,0.00561232,0.00878818,3,100,0,224.328,nan
+sklearn-emeans,batch_size=auto epochs=10 init=k-means++,True,3.53283,3.51593,3.54353,0.00486083,0.00472227,0.00677483,3,200,0,267.605,nan
+sklearn-lloyd,init=random max_iter=3 n_init=1 tol=1e-09,True,1.18616,1.14327,1.20527,0.0819491,0.0735109,0.0874295,3,3,0,656.812,nan
+sklearn-lloyd,init=random max_iter=10 n_init=1 tol=1e-09,True,1.67492,1.65818,1.70686,0.0292033,0.0287821,0.0292509,3,10,0,655.984,nan
+sklearn-lloyd,init=k-means++ max_iter=3 n_init=1 tol=1e-09,False,2.83296,2.7745,2.90503,0.0441855,0.0420397,0.0474447,3,3,0,632.285,nan
+sklearn-lloyd,init=random max_iter=30 n_init=1 tol=1e-09,True,3.03288,2.82245,3.08154,0.011111,0.0102602,0.0129664,3,30,0,645.422,nan
+sklearn-lloyd,init=k-means++ max_iter=10 n_init=1 tol=1e-09,False,3.16628,3.10827,3.18165,0.0183829,0.0174411,0.0192045,3,10,0,622.57,nan
+sklearn-lloyd,init=k-means++ max_iter=30 n_init=1 tol=1e-09,True,4.64783,4.58716,4.65314,0.00682199,0.00550928,0.00686504,3,30,0,615.785,nan
+sklearn-lloyd,init=random max_iter=100 n_init=1 tol=1e-09,True,7.72433,7.61372,7.7509,0.00365703,0.00297817,0.00510762,3,100,0,663.566,nan
+sklearn-lloyd,init=k-means++ max_iter=100 n_init=1 tol=1e-09,True,9.06311,9.05184,9.16425,0.00212682,0.000640356,0.0029424,3,100,0,629.836,nan
+sklearn-lloyd,init=random max_iter=300 n_init=1 tol=0.0001,True,21.3923,21.1878,21.9404,0.00190428,0.00094676,0.00311464,3,300,0,638.09,nan
+sklearn-lloyd,init=random max_iter=300 n_init=1 tol=1e-09,False,21.4731,21.4697,21.9234,0.00191048,0.000947762,0.0031137,3,300,0,649.719,nan
+sklearn-lloyd,init=k-means++ max_iter=300 n_init=1 tol=0.0001,True,22.0836,22.0104,22.9513,0.000585401,0.00017352,0.00140551,3,300,0,614.008,nan
+sklearn-lloyd,init=k-means++ max_iter=300 n_init=1 tol=1e-09,True,22.4015,22.1782,22.5529,0.000571177,0.000171748,0.00140043,3,300,0,620.168,nan
+sklearn-lloyd,init=random max_iter=300 n_init=3 tol=0.0001,False,60.3047,60.0031,60.6942,0.000989161,0.000947097,0.00115437,3,300,0,641.895,nan
+sklearn-lloyd,init=k-means++ max_iter=300 n_init=3 tol=0.0001,True,63.9806,63.9341,63.9877,0.000556513,0.000171309,0.000623128,3,300,0,610.945,nan
