@@ -115,7 +115,7 @@ non-finite centers, and the CuPy and PyTorch backends when a GPU is present.
 
 ## Reading the plots
 
-![GPU pilot](plots/glove-200-k256-aws-l4-gpu.png)
+![GloVe-200, k=256 on the GPU (v1 sweep)](plots/glove-200-k256-aws-l4-gpu.png)
 
 - One point = one setting of one implementation: **median over seeds** of fit time and of
   relative inertia. Whiskers span the fastest to the slowest seed and the best to the
@@ -136,12 +136,14 @@ non-finite centers, and the CuPy and PyTorch backends when a GPU is present.
 
 Three seeds per point. Best known inertia: 31.653071, from an e-means run at 20 epochs.
 It beats the five reference runs (greedy k-means++ then 1000 Lloyd iterations, best
-31.6601). Each pilot took 11.5 to 16 minutes. Results are in `results/pilot-*.jsonl`,
-plots and per-point CSVs in `plots/`.
+31.6601). Each pilot took 11.5 to 16 minutes. Results are in `results/pilot-*.jsonl`.
+The figures below are from the v1 sweep (`results/v1-*.jsonl`), which reruns the same
+settings with more implementations and settings, so they hold more points than the numbers
+quoted here.
 
 **GPU** (aws-l4: NVIDIA L4, 72 W cap, cuML, CuPy fused kernels, e-means FP32):
 
-![GPU pilot](plots/glove-200-k256-aws-l4-gpu.png)
+![GloVe-200, k=256 on the GPU (v1 sweep)](plots/glove-200-k256-aws-l4-gpu.png)
 
 | budget | cuML | CuPy fused | e-means (FP32, Triton) |
 | --- | --- | --- | --- |
@@ -167,7 +169,7 @@ plots and per-point CSVs in `plots/`.
 
 **CPU** (intel-xeon, one socket: Xeon 6787P, 86 cores, run at 43 threads):
 
-![CPU pilot, 43 threads](plots/glove-200-k256-intel-xeon-s1-43t-cpu.png)
+![GloVe-200, k=256 on the CPU, 43 threads (v1 sweep)](plots/glove-200-k256-intel-xeon-s1-43t-cpu.png)
 
 - **scikit-learn nightly Lloyd** (k-means++ with #35140: ~1.7 s at k=256) and **FAISS**
   share the front at short budgets. FAISS's default subsampling (`max_points_per_centroid
