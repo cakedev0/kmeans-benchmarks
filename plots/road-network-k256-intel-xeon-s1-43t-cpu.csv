@@ -1,2 +1,30 @@
 series,settings,on_front,fit_s,fit_s_min,fit_s_max,rel,rel_min,rel_max,n_seeds,n_iter_median,n_empty_max,peak_mem_mb_median,gpu_sm_clock_mean
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.421463,0.400233,0.436169,0.159762,0.123737,0.240939,3,531,0,32.9375,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=1,True,0.65171,0.633039,0.673294,0.142066,0.118733,0.228594,3,531,0,19.2266,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=2,True,1.13597,1.13085,1.14714,0.124116,0.0816213,0.216745,3,1062,0,65.2852,nan
+emeans-cpu,alpha0=None batch_law=auto batch_size=None epochs=5,False,2.41426,2.38595,2.4309,0.142364,0.0776307,0.206152,3,1330,0,45.0586,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=0.5,True,0.493247,0.489166,0.532657,0.159891,0.123737,0.240939,3,531,0,57.4883,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=1,True,0.571121,0.561463,0.581103,0.142056,0.115865,0.228593,3,531,0,53.7656,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=2,True,1.14838,1.12078,1.20653,0.124116,0.0816213,0.215264,3,1062,0,90.2969,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=5,False,1.58229,1.56448,1.61031,0.142364,0.0776307,0.206152,3,1330,0,85.9688,nan
+emeans-cpu-cython,alpha0=None batch_law=auto batch_size=None epochs=10,False,2.29143,2.24754,2.29959,0.142097,0.0690621,0.202152,3,1330,0,84.5391,nan
+faiss-cpu,max_points_per_centroid=256 niter=25 nredo=1,True,0.123148,0.118453,0.143753,0.27838,0.248176,0.279643,3,25,0,16.4648,nan
+faiss-cpu,max_points_per_centroid=None niter=3 nredo=1,False,0.459446,0.443717,0.474217,0.484581,0.437966,0.488713,3,3,0,36.125,nan
+faiss-cpu,max_points_per_centroid=None niter=10 nredo=1,True,1.26367,1.2486,1.27425,0.265745,0.211932,0.319491,3,10,0,35.3281,nan
+faiss-cpu,max_points_per_centroid=None niter=25 nredo=1,True,3.02497,2.99269,3.05821,0.223483,0.164357,0.228576,3,25,0,33.0547,nan
+faiss-cpu,max_points_per_centroid=None niter=100 nredo=1,True,11.8775,11.8293,11.9035,0.168973,0.124416,0.206648,3,100,0,33.0547,nan
+sklearn-elkan,init=random max_iter=3 n_init=1 tol=1e-09,True,1.727,1.72524,1.74237,0.454792,0.368297,0.666425,3,3,0,4333.26,nan
+sklearn-elkan,init=random max_iter=10 n_init=1 tol=1e-09,True,4.4457,4.43106,4.50108,0.203553,0.17601,0.388291,3,10,0,4323.65,nan
+sklearn-elkan,init=random max_iter=30 n_init=1 tol=1e-09,True,12.1453,11.9802,12.2408,0.140137,0.133326,0.310077,3,30,0,4309.95,nan
+sklearn-elkan,init=random max_iter=100 n_init=1 tol=1e-09,True,38.7887,37.9579,38.7992,0.123019,0.11708,0.302652,3,100,0,4321.29,nan
+sklearn-elkan,init=random max_iter=300 n_init=1 tol=1e-09,True,49.5162,40.4763,96.7082,0.123019,0.117057,0.297569,3,129,0,4317.84,nan
+sklearn-emeans,batch_size=auto epochs=0.5 init=random,True,0.3487,0.347784,0.360234,0.141207,0.117539,0.317752,3,531,0,64.6094,nan
+sklearn-emeans,batch_size=auto epochs=1 init=random,True,0.41773,0.417162,0.419084,0.129436,0.104856,0.300724,3,531,0,66.0898,nan
+sklearn-emeans,batch_size=auto epochs=2 init=random,True,0.71729,0.704921,0.721922,0.108864,0.0920934,0.275014,3,1062,0,73.1055,nan
+sklearn-emeans,batch_size=auto epochs=0.5 init=k-means++,True,0.90848,0.89118,0.954675,0.0260722,0.0202862,0.0261483,3,531,0,173.379,nan
+sklearn-emeans,batch_size=auto epochs=1 init=k-means++,True,0.971167,0.942498,0.981348,0.0242419,0.0164286,0.0302355,3,531,0,189.121,nan
 sklearn-lloyd,init=random max_iter=3 n_init=1 tol=1e-09,True,0.659563,0.642435,0.663195,0.454797,0.368288,0.666438,3,3,0,126.633,nan
+sklearn-lloyd,init=random max_iter=10 n_init=1 tol=1e-09,True,1.02433,1.0134,1.05519,0.203559,0.175961,0.3883,3,10,0,124.336,nan
+sklearn-lloyd,init=random max_iter=30 n_init=1 tol=1e-09,True,2.11771,2.10552,2.16512,0.140135,0.133364,0.310161,3,30,0,113.805,nan
+sklearn-lloyd,init=random max_iter=100 n_init=1 tol=1e-09,True,5.93848,5.91763,5.97807,0.123248,0.11709,0.302655,3,100,0,117.668,nan
+sklearn-lloyd,init=random max_iter=300 n_init=1 tol=1e-09,True,7.81283,6.1251,14.4081,0.123248,0.117056,0.297569,3,131,0,132.016,nan
