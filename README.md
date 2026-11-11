@@ -32,7 +32,7 @@ pixi run python -m kmb run configs/pilot-glove-k256-gpu.toml --impl cuml --dry-r
 CPU benchmarks on one socket of intel-xeon, GPU benchmarks on an AWS L4 VM.
 
 ```bash
-# CPU, one socket of intel-xeon (86 cores; the config sets threads = 86)
+# CPU, one socket of intel-xeon (86 cores; the configs set threads = 43)
 ssh intel-xeon 'cd ~/work/kmeans-benchmarks && benchlock --tag "kmb cpu" s1 -- \
   pixi run python -m kmb run configs/pilot-glove-k256-cpu.toml --machine intel-xeon-s1'
 # GPU, a whole L4 VM
@@ -165,14 +165,14 @@ plots and per-point CSVs in `plots/`.
 - The CuPy code's peak memory (~910 MB) is mostly a temporary copy of `X` in its
   `cp.var(X, axis=0)` tolerance computation, not in the Lloyd loop.
 
-**CPU** (intel-xeon, one socket: Xeon 6787P, 86 cores, run at 43 and 86 threads):
+**CPU** (intel-xeon, one socket: Xeon 6787P, 86 cores, run at 43 threads):
 
 ![CPU pilot, 43 threads](plots/glove-200-k256-intel-xeon-s1-43t-cpu.png)
 
 - **scikit-learn nightly Lloyd** (k-means++ with #35140: ~1.7 s at k=256) and **FAISS**
   share the front at short budgets. FAISS's default subsampling (`max_points_per_centroid
   =256`) gives 2.9e-2 in 0.2 s; on all the data it is the fastest at ≤10 iterations
-  (0.9 s at 43 threads, 1.7 s at 86).
+  (0.9 s).
 - **FAISS's CPU e-means is slowed down by `np.add.at`**: one epoch costs ~2 s whatever the
   thread count, of which 75% is `np.add.at(sums, labels, rows)` (22 ms per 16,384-row
   step, against 0.7 ms for `faiss.knn`). In this pilot it only matches scikit-learn Lloyd
@@ -235,11 +235,12 @@ next to every time:
 - e-means: `epochs` (`nepochs`, fractional allowed) is the budget. Batch size and step
   size come from the paper's scaling laws (`batch_law="auto"`, or `"quality"` for 8x
   smaller batches). Its init is random. The `recipe` it chose is in `extra`.
-- **Thread counts matter on a big socket.** On one 86-core xeon socket, a 1,024-row
-  MiniBatchKMeans step takes 37 ms at 86 threads, 9x slower than at 8 threads, and FAISS
-  Lloyd iterations are ~2x faster at 43 threads than at 86. Every library in a run uses the
-  same count (`threads` in the config, or `--threads`), the count is part of the resume
-  key, and CPU figures are split by it (`<machine>-<threads>t`).
+- **CPU runs use 43 threads, half of one 86-core xeon socket.** With all 86 threads, some
+  libraries degrade for reasons specific to such a large socket (a 1,024-row
+  MiniBatchKMeans step is 9x slower than at 8 threads, FAISS Lloyd iterations ~2x slower
+  than at 43), which is not representative of common machines. Every library in a run
+  uses the same count (`threads` in the config, or `--threads`), the count is part of the
+  resume key, and CPU figures are split by it (`<machine>-<threads>t`).
 
 ## Datasets
 

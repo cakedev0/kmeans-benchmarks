@@ -1,8 +1,8 @@
 # CPU side of the pilot: one socket of intel-xeon (benchlock slot s0 or s1, 86 cores),
-# same thread count for every library.
+# same thread count for every library: 43, half the socket (see the README).
 name = "pilot-glove-k256-cpu"
 seeds = [0, 1, 2]
-threads = 86
+threads = 43
 timeout_s = 3600
 
 [[datasets]]
